@@ -1,6 +1,6 @@
 function WAMP(clientType) {
 	var myShape;
-	var autobahn = require('autobahn');
+	var autobahn;
 	
 	self = this;
 	self.clientType = clientType;
@@ -10,9 +10,10 @@ function WAMP(clientType) {
 	self.offer;
 	
 	/*try {
-		
+		autobahn = require('autobahn');
 	} catch (e) {
 		// when running in browser, AutobahnJS will be included without a module system.
+		console.log(e);
 	}*/
 	
 		// Set up WAMP connection to router
