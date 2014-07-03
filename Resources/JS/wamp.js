@@ -9,17 +9,17 @@ function WAMP(clientType) {
 	self.myPlayer;
 	self.offer;
 	
-	/*try {
+	try {
 		autobahn = require('autobahn');
 	} catch (e) {
 		// when running in browser, AutobahnJS will be included without a module system.
 		console.log(e);
-	}*/
+	}
 	
 		// Set up WAMP connection to router
 		var sess;
 		var connection = new autobahn.Connection({
-			url: 'ws://tpserver.local:8080/ws',
+			url: url,
 			realm: 'tradingpit'
 		});
 
@@ -29,7 +29,6 @@ function WAMP(clientType) {
 			var currentSubscription = null;
 			self.sess.subscribe("pit.pub."+self.sess.id, self.callbacks.onCard);
 
-			//w.wampMethods.rpcCall("signin");
 
 
 			// Subscribe to a topic
@@ -124,26 +123,7 @@ function WAMP(clientType) {
 			},
 			rpcCall: function(call) {
 				console.log(call);
-				if (call == "signin") {
-					self.sess.call("pit.rpc.signin", [], {
-						id: self.sess.id,
-						player: {
-							role: "buyer",
-							position: 0,
-							id: self.sess.id,
-							meat: "true",
-							name: "QT"
-						}
-					}).then(
-					function(r) {
-						myShape = r.shape;
-						$(".my-logoDiv").load( "shapes.html  #" + myShape );
-
-						self.sess.call("pit.rpc.offerTemplate").then(function(r){
-							self.offer = r;
-						});
-					});
-				} else if (call == "offer") {
+				if (call == "offer") {
 
 					self.sess.call("pit.rpc.offer", [], {
 						id: self.sess.id,
