@@ -6,7 +6,7 @@
 		<title>Trading Pit Overlord</title>
 		<style type="text/css" media="screen">
 		.inline{display:inline}
-		.half{
+		.qt{
 			display:inline-block;
 			width: 25%;
 		}
@@ -25,12 +25,22 @@
 	</head>
  	
 	<body>
-		<div class = "half">
+		<div class = "qt">
 		<h3 class = "inline">Phase: </h3><h2 class = "phase inline"></h2>
 		</div>
-		<div class = "half">
+		<div class = "qt">
 		<h3 class  = "inline">Time: </h3><h2 class = "time inline"></h2>
+		</div>
+		<div class = "qt">
+			<form>
+			<label for="tpserver">Select Server</label>
+			<select id = "tpserver" name="tpserver">
+			  <option value="localhost">This Machine</option>
+			  <option value="pylos.local">Ryan's Machine</option>
+			</select>
+			</form>
 		</div></br>
+			
 		<div id="trans" class="inline"></div><div id="dist" class="inline" ></div>
 			
 		</div>

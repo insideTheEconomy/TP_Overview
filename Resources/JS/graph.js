@@ -256,12 +256,27 @@ function setPhase(a,p){
 }
 
 $(function(){
+	connect("localhost")
+	$("#tpserver").change(function(){
+			alert("Using "+$("#tpserver").val());
+			connect($("#tpserver").val())
+	})
 
+})
 
+function connect(host){
+	
+	
+	trans = null;
+	dist = null;
+	
+	$("#trans").empty();
+	$("#dist").empty();
+	
 	trans = new transactionChart();
 	dist = new distChart();
 	connection = new autobahn.Connection({
-		url: 'ws://pylos.local:8080/ws',
+		url: 'ws://'+host+':8080/ws',
 		realm: 'tradingpit'
 	});
 
@@ -281,4 +296,4 @@ $(function(){
 			});
 	}
 	connection.open();
-})
+}
