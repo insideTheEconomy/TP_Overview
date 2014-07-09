@@ -6,6 +6,10 @@
 		<title>Trading Pit Overlord</title>
 		<style type="text/css" media="screen">
 		.inline{display:inline}
+		.half{
+			display:inline-block;
+			width: 25%;
+		}
 		</style>
 		<script src="JS/autobahn.min.js"></script>
 
@@ -21,7 +25,12 @@
 	</head>
  	
 	<body>
-	
+		<div class = "half">
+		<h3 class = "inline">Phase: </h3><h2 class = "phase inline"></h2>
+		</div>
+		<div class = "half">
+		<h3 class  = "inline">Time: </h3><h2 class = "time inline"></h2>
+		</div></br>
 		<div id="trans" class="inline"></div><div id="dist" class="inline" ></div>
 			
 		</div>

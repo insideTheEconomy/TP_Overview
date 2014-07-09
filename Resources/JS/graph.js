@@ -247,6 +247,14 @@ distChart.prototype.drawAxes = function(){
 
 var trans,dist, sess, connection;
 
+function tick(a,t){
+	var spacer = (t.seconds%2 == 0) ? " " : ":";
+	$(".time").html(t.minutes+":"+t.seconds);
+}
+function setPhase(a,p){
+	$(".phase").html(p.name);
+}
+
 $(function(){
 
 
@@ -262,6 +270,9 @@ $(function(){
 		console.log("connected to wamp server");
 		sess = session;
 		var currentSubscription = null;
+		sess.subscribe("pit.pub.clock", tick);
+		sess.subscribe("pit.pub.phase", setPhase);
+	
 		sess.subscribe("pit.pub.transactions", function(a,d){
 			console.log("TRANSACTIONS: ",d);
 			trans.draw(d.transactions);
