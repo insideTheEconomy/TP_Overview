@@ -9,8 +9,8 @@
     "toolbar": true,
     "frame": true,
 	"fullscreen":false,
-    "width": 1024,
-    "height": 768,
+    "width": 1920,
+    "height": 1080,
 	"position": "center",
 	"kiosk":false
   },"dependencies": {
@@ -19,6 +19,5 @@
   "webkit": {
     "plugin": true,
 	"java": true
-	
   }
 }
