@@ -22,7 +22,7 @@ function WAMP(clientType) {
 		connection.onopen = function(session) {
 			self.sess = session;
 			var currentSubscription = null;
-			self.sess.subscribe("pit.pub."+self.sess.id, self.callbacks.onCard);
+			loadScreen("shared_0.html");
 			
 			// Subscribe to phases
 			session.subscribe('pit.pub.phase', self.callbacks.onPhase).then(
@@ -60,57 +60,56 @@ function WAMP(clientType) {
 			},
 			// Define an event handler
 			onTick: function(args, kwargs, details) {
-				//console.log("Tick", args, kwargs, details);
-				$("#time").html(kwargs.minutes+":"+kwargs.seconds);
-			//	console.log("tick");
+				$(".idletime").html(kwargs.until_round.minutes+":"+kwargs.until_round.seconds);
+				$("#time").html(kwargs.end_of_phase.minutes+":"+kwargs.end_of_phase.seconds);
 			},
 			rpcCall: function(call) {
 				console.log(call);
 			},
 			onPhase: function(args, kwargs, details) {
-			console.log("onPhase: ", kwargs);
-			if (kwargs.action == "enter") {
-				switch(kwargs.name){
+				console.log("onPhase: ", kwargs);
+				if (kwargs.action == "enter") {
+					switch(kwargs.name){
 					
-					case "Setup":
-						phase = 0;
-						loadScreen("shared_0.html");
-						break;
+						case "Setup":
+							phase = 0;
+							loadScreen("shared_0.html");
+							break;
 						
-					case "Round":
-						phase = 1;
-						loadScreen("shared_1.html");
-						break;
+						case "Round":
+							phase = 1;
+							loadScreen("shared_1.html");
+							break;
 						
-					case "Wrap-up":
-						phase = 2;
-						loadScreen("shared_2.html");
-						break;
+						case "Wrap-up":
+							phase = 2;
+							loadScreen("shared_2.html");
+							break;
 						
-					case "Recap":
-						phase = 3;
-						loadScreen("shared_2.html");
-						break;
+						case "Recap":
+							phase = 3;
+							loadScreen("shared_2.html");
+							break;
 						
+						}
+				} else {
+					switch(kwargs.name){
+						case "Setup":
+							break;
+						
+						case "Round":
+							break;
+						
+						case "Wrap-up":
+							break;
+						
+						case "Recap":
+							break;
+						
+					}
 				}
-			} else {
-				switch(kwargs.name){
-					case "Setup":
-						break;
-						
-					case "Round":
-						break;
-						
-					case "Wrap-up":
-						break;
-						
-					case "Recap":
-						break;
-						
-				}
-			}
 			
-		},
+			}
 		}
 
 		this.wamp = new WAMP(this);
