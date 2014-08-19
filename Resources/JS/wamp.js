@@ -34,32 +34,15 @@ function WAMP(clientType) {
 				});
 
 
-			// Subscribe to a topic
-			session.subscribe('pit.pub.offers', self.callbacks.onOffer).then(
-
-			function(subscription) {
-				// console.log("subscription successfull", subscription);
-				currentSubscription = subscription;
-				console.log("subbed to offers", subscription);
-			},
-
-			function(error) {
-				//console.log("subscription failed", error);
-			}
-
-			);
+			// Subscribe to a clock
 			session.subscribe('pit.pub.clock', self.callbacks.onTick).then(
-
 			function(subscription) {
 				// console.log("subscription successfull", subscription);
 				currentSubscription = subscription;
 			},
-
 			function(error) {
 				//console.log("subscription failed", error);
-			}
-
-			);
+			});
 		};
 
 		// Open connection
@@ -73,7 +56,7 @@ function WAMP(clientType) {
 			// Recieve which news event to play
 			
 			test: function(){
-				alert("I'm a Player!");
+				alert("I'm the shared screen!");
 			},
 			// Define an event handler
 			onTick: function(args, kwargs, details) {
@@ -112,7 +95,6 @@ function WAMP(clientType) {
 				}
 			} else {
 				switch(kwargs.name){
-					
 					case "Setup":
 						break;
 						
