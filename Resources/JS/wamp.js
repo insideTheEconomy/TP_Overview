@@ -60,7 +60,7 @@ function WAMP(clientType) {
 			},
 			// Define an event handler
 			onTick: function(args, kwargs, details) {
-				$(".idletime").html(kwargs.until_round.minutes+":"+kwargs.until_round.seconds);
+				//$(".idletime").html(kwargs.until_round.minutes+":"+kwargs.until_round.seconds);
 				$("#time").html(kwargs.end_of_phase.minutes+":"+kwargs.end_of_phase.seconds);
 			},
 			rpcCall: function(call) {
@@ -73,22 +73,22 @@ function WAMP(clientType) {
 					
 						case "Setup":
 							phase = 0;
-							loadScreen("shared_0.html");
+							//loadScreen("shared_0.html");
 							break;
 						
 						case "Round":
 							phase = 1;
-							loadScreen("shared_1.html");
+							//loadScreen("shared_1.html");
 							break;
 						
 						case "Wrap-up":
 							phase = 2;
-							loadScreen("shared_2.html");
+							//loadScreen("shared_2.html");
 							break;
 						
 						case "Recap":
 							phase = 3;
-							loadScreen("shared_2.html");
+							//loadScreen("shared_2.html");
 							break;
 						
 						}

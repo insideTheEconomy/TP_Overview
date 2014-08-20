@@ -1,1 +1,76 @@
-@font-face{font-family:label;src:url(../FONTS/GothamRnd-Book.otf) format('opentype');font-weight:400;font-style:normal}@font-face{font-family:bold;src:url(../FONTS/GothamRnd-Bold.otf) format('opentype');font-weight:400;font-style:normal}@font-face{font-family:sub-title;src:url(../FONTS/gothamrnd-light-webfont.ttf) format('truetype');font-weight:400;font-style:normal}@font-face{font-family:medium;src:url(../FONTS/GothamRnd-Medium.otf) format('opentype');font-weight:400;font-style:normal}@font-face{font-family:title;src:url(../FONTS/linotype_-_universltpro-ultracondensed-webfont.svg#univers_lt_pro59ultraCn) format('svg');font-weight:400;font-style:normal}@font-face{font-family:clock;src:url(../FONTS/DS-DIGI.TTF) format('truetype');font-weight:400;font-style:normal}.reflect{-webkit-box-reflect:below -54px -webkit-gradient(linear,left top,left bottom,from(transparent),color-stop(12%,transparent),to(rgba(255,255,255,.54)));position:absolute}*{-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}body{overflow:hidden;width:1024px;height:768px;margin:0!important;background-image:url(../IMAGES/BG.jpg)}.greybox{position:absolute;background-color:rgba(0,0,0,.8);font-family:medium;color:#fff;font-size:28px}.greybox p{margin:50px}h1{font-family:title;font-size:72px;color:#a4dbe8}h2{font-family:medium;font-size:36px;color:#fff}
+/*-- Imported .less --*/
+@font-face {
+  font-family: 'label';
+  src: url('../FONTS/GothamRnd-Book.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'bold';
+  src: url('../FONTS/GothamRnd-Bold.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'sub-title';
+  src: url('../FONTS/gothamrnd-light-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'medium';
+  src: url('../FONTS/GothamRnd-Medium.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'title';
+  src: url('../FONTS/linotype_-_universltpro-ultracondensed-webfont.svg#univers_lt_pro59ultraCn') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'clock';
+  src: url('../FONTS/DS-DIGI.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+/*-- General Styles --*/
+.reflect {
+  -webkit-box-reflect: below -54px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(12%, transparent), to(rgba(255, 255, 255, 0.54)));
+  position: absolute;
+}
+* {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+body {
+  overflow: hidden;
+  width: 1024px;
+  height: 768px;
+  margin: 0px !important;
+  background-image: url('../IMAGES/BG.jpg');
+}
+.greybox {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.65);
+  font-family: 'medium';
+  color: white;
+  font-size: 28px;
+}
+.greybox p {
+  margin: 50px;
+}
+h1 {
+  font-family: "title";
+  font-size: 72px;
+  color: #a4dbe8;
+}
+h2 {
+  font-family: "medium";
+  font-size: 36px;
+  color: white;
+}
