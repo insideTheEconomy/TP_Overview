@@ -1,6 +1,6 @@
-var transactionChart = function(){
+var transactionChart = function(sel, w, h){
 	self = this;
-
+	console.log("transaction constructor");
 	this.dimen = {
 		padding: {
 			top: 60,
@@ -9,8 +9,10 @@ var transactionChart = function(){
 			left: 60
 		},
 		
-		width:640,	height:480
+		width:w,	height:h
+		
 	}
+	console.log(dimen);
 	
 	this.dimen.inner = {
 		width : this.dimen.width - this.dimen.padding.right - this.dimen.padding.right,
@@ -19,7 +21,7 @@ var transactionChart = function(){
 		right: this.dimen.width - this.dimen.padding.right
 	}
 	
-	this.svg = d3.select("#trans").append("svg").attr({
+	this.svg = d3.select(sel).append("svg").attr({
 		width: this.dimen.width,
 		height: this.dimen.height
 	});

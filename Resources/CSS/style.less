@@ -54,6 +54,37 @@ h2 {
 	
 }
 
+/////////////////
+/////Charts/////
+///////////////
+
+#trans>svg{background-color: @black}
+
+////^^Temporary^^/////
+
+.domain{
+	fill: none;
+	stroke: white;
+}
+
+.dot{
+	font-size: 1.5em;
+	&.buyer{
+		fill: @orange;
+		stroke: @orange;
+		font-size: 2em;
+	}
+	&.seller{
+		fill: @logo-green;
+		stroke-width: 2px;
+		stroke: @logo-green;
+	}
+}
+
+.seller_dot{
+	fill: @logo-green;
+}
+
 #trans {
 	& svg {
 		fill:white;

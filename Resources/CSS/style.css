@@ -77,6 +77,29 @@ h2 {
   font-size: 36px;
   color: white;
 }
+#trans > svg {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.domain {
+  fill: none;
+  stroke: white;
+}
+.dot {
+  font-size: 1.5em;
+}
+.dot.buyer {
+  fill: #f0c135;
+  stroke: #f0c135;
+  font-size: 2em;
+}
+.dot.seller {
+  fill: #7ac441;
+  stroke-width: 2px;
+  stroke: #7ac441;
+}
+.seller_dot {
+  fill: #7ac441;
+}
 #trans svg {
   fill: white;
 }
