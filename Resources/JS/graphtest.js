@@ -33,8 +33,8 @@ function connect(host){
 	$("#trans").empty();
 	$("#dist").empty();
 	
-	trans = new transactionChart("#trans", 825,665);
-//	dist = new distChart();
+//	trans = new transactionChart("#trans", 825,665);
+	dist = new distChart("#trans", 825,665);
 	connection = new autobahn.Connection({
 		url: 'ws://'+host+':8080/ws',
 		realm: 'tradingpit'
@@ -50,9 +50,9 @@ function connect(host){
 		sess.subscribe("pit.pub.players", printPlayers);
 		sess.subscribe("pit.pub.offers", printOffers);
 		sess.subscribe("pit.pub.transactions", function(a,d){
-			console.log("TRANSACTIONS: ",d);
-			trans.draw(d.transactions);
-		//	dist.draw(d.distribution);
+			//console.log("TRANSACTIONS: ",d);
+		//	trans.draw(d.transactions);
+			dist.draw(d.distribution);
 			
 			});
 	}

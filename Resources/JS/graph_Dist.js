@@ -1,4 +1,4 @@
-var distChart = function(){
+var distChart = function(sel, w, h){
 	self = this;
 	this.dimen = {
 		padding: {
@@ -8,7 +8,7 @@ var distChart = function(){
 			left: 125
 		},
 		
-		width:840,	height:840
+		width:w,	height:h
 	}
 	
 	this.dimen.inner = {
@@ -18,7 +18,7 @@ var distChart = function(){
 		right: this.dimen.width - this.dimen.padding.right
 	}
 	
-	this.svg = d3.select("#dist").append("svg").attr({
+	this.svg = d3.select(sel).append("svg").attr({
 		width: this.dimen.width,
 		height: this.dimen.height
 	});
@@ -32,9 +32,9 @@ var distChart = function(){
 		}
 		
 		this.scales.x.range([this.dimen.padding.left, this.dimen.inner.right])
-			.domain([0,10])
+			.domain([0,20])
 		this.scales.y.range([this.dimen.inner.bottom, this.dimen.padding.top])
-			.domain([0,12])
+			.domain([0,20])
 		
 	}
 	
@@ -56,45 +56,31 @@ var distChart = function(){
 distChart.prototype.draw = function(_d){
 	console.log("DRAW DIST DOTS!",_d);
 	var data = _d;
-	var keys = Object.keys(_d);
-	console.log("DISTRIBUTION KEYS", keys);
-//	if(keys.length > 10) self.scales.x.domain([0,_d.length]) ;
-	
-	
-	
-	
-/*	this.dotGroup.selectAll("circle")
-		.attr({
-			r: 4,	fill: "green",	
-			cx: function(d,i){return self.scales.x(+d)},
-			cy: function(d,i){return self.scales.y(data[d].length)}
-		});
-	
-	this.dotGroup.selectAll("circle").data(keys).enter().append("circle")
-		.attr({
-			r: 6,	fill: "red",
-			cx: function(d,i){
-				console.log("CIRCLEDATA", d)
-				return self.scales.x(+d)
-				},
-			cy: function(d,i){return self.scales.y(data[d].length)}
-		});*/
-		
-		
-		this.dotGroup.selectAll("text")
-			.attr({
-				fill: "green",	
-				x: function(d,i){return self.scales.x(+d)},
-				y: function(d,i){return self.scales.y(data[d].length)}
-			}).text("\u263A");
 
-		this.dotGroup.selectAll("circle").data(keys).enter().append("text")
-			.attr({
-				fill: "green",	
-				x: function(d,i){return self.scales.x(+d)},
-				y: function(d,i){return self.scales.y(data[d].length)}
+
+	var keys = Object.keys(_d);
+	var sorted = [];
+	var top = keys.sort(function(a,b){ return data[a].length - data[b].length  })[keys.length-1]
+	data[top].eq_price = true;
+	
+	console.log("DISTRIBUTION KEYS", keys);
+	
+		function drawDots(_selection){
+			_selection.attr({
+				class: function(d){
+					return (data[d].eq_price) ? "dot dist eq_price" : "dot dist";
+				},	r: 10,
+				cx: function(d,i){return self.scales.x(+d)},
+				cy: function(d,i){return self.scales.y(data[d].length)}
 			}).text("\u263A");
+		}
+
+		var oldDots = this.dotGroup.selectAll("circle")	
+		var newDots = this.dotGroup.selectAll("circle").data(keys).enter().append("circle");
+		this.dotGroup.selectAll("circle").data(keys).exit().remove();
 		
+		drawDots(oldDots);
+		drawDots(newDots);
 	
 	
 }

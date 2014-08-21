@@ -97,6 +97,10 @@ h2 {
   stroke-width: 2px;
   stroke: #7ac441;
 }
+.dot.eq_price {
+  fill: #00ff00;
+  -webkit-filter: drop-shadow(12px 12px 7px rgba(1, 0, 0, 0.5));
+}
 .seller_dot {
   fill: #7ac441;
 }
