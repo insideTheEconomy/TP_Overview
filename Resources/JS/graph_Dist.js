@@ -66,11 +66,14 @@ distChart.prototype.draw = function(_d){
 	console.log("DISTRIBUTION KEYS", keys);
 	
 		function drawDots(_selection){
-			_selection.attr({
+			_selection.attr({cx: function(d,i){return self.scales.x(+d)}})
+			.transition()
+			.attr({
+				opacity: 1,
 				class: function(d){
 					return (data[d].eq_price) ? "dot dist eq_price" : "dot dist";
 				},	r: 10,
-				cx: function(d,i){return self.scales.x(+d)},
+				
 				cy: function(d,i){return self.scales.y(data[d].length)}
 			}).text("\u263A");
 		}
@@ -80,7 +83,7 @@ distChart.prototype.draw = function(_d){
 		this.dotGroup.selectAll("circle").data(keys).exit().remove();
 		
 		drawDots(oldDots);
-		drawDots(newDots);
+		drawDots(newDots.attr("opacity",0).attr("cy",self.scales.y(0)));
 	
 	
 }

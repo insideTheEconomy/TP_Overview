@@ -35,6 +35,75 @@
 	</head>
  	
 	<body>
+		
+		<svg height="0">
+	
+
+
+			<filter id="dot_glow">
+				<feGaussianBlur in="SourceAlpha" stdDeviation="2.2"/>
+				<feOffset dx="2" dy="2" result="offsetblur"/>
+				<feFlood flood-color="rgba(1,0,0,1)"/>
+				<feComposite in2="offsetblur" operator="in"/>
+				<feMerge>
+				<feMergeNode/>
+					<feMergeNode in="SourceGraphic"/>
+					<feMergeNode in="offsetblur"/>
+				</feMerge>
+			</filter>
+		
+			<defs>
+			    <filter id="glowie" x="-150%" y="-150%" height="300%" width="300%">
+			    <feGaussianBlur in="SourceAlpha" stdDeviation="6" result="blurred"></feGaussianBlur>
+			
+			    
+			<feGaussianBlur in="SourceAlpha" stdDeviation="2" result="blackened"></feGaussianBlur>
+			    <feComponentTransfer in1 = "blurred" result="colored">
+			        <feFuncR type="linear" slope="1" intercept="1"></feFuncR>
+			        <feFuncG type="linear" slope="1" intercept="0.6"></feFuncG>
+			        <feFuncB type="linear" slope="1" intercept="0"></feFuncB>
+			        <feFuncA type="linear" slope="1" ></feFuncA>
+				
+			    </feComponentTransfer>
+				<feOffset dx="0" dy="0" in = "colored" result = "off" />
+				<feComposite in="SourceGraphic" in2="off" operator="add" result="comp"/>
+			      <feMerge> 
+			        	<feMergeNode in = "colored"></feMergeNode>
+						<feMergeNode in = "blackened"></feMergeNode>
+			        	<feMergeNode in="SourceGraphic"></feMergeNode> 
+		
+			      </feMerge>
+			    </filter>
+			
+					<filter
+					       id="outline"
+					       color-interpolation-filters="sRGB">
+					      <feGaussianBlur
+					         id="feGaussianBlur2997"
+					         stdDeviation="0.5"
+					         in="SourceAlpha"
+					         result="result0" />
+					      <feComposite
+					         id="feComposite2999"
+					         in2="result0"
+					         result="result3"
+					         operator="arithmetic"
+					         in="SourceGraphic"
+					         k2="1"
+					         k3="10" />
+					      <feComposite
+					         id="feComposite3001"
+					         in2="result3"
+					         k2="1"
+					         operator="in"
+					         in="result3"
+					         result="result4" />
+					    </filter>
+			
+			  </defs>
+	
+		</svg>	
+		
 		<div class = "qt">
 		<h3 class = "inline">Phase: </h3><h2 class = "phase inline"></h2>
 		</div>
@@ -58,5 +127,5 @@
 		<div id = "log"><p>Hello</p></div>
 		
 	</body>
-		
+	
 </html>

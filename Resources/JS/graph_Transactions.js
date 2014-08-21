@@ -100,11 +100,11 @@ transactionChart.prototype.draw = function(_d){
 		self.axes.x.scale(self.scales.x);
 		this.xAxis.call(this.axes.x);
 		var dots = this.dotGroup.selectAll("g");
-		
+		drawDots(dots);
 		
 	} 
 	var newDots = this.dotGroup.selectAll("g").data(_d).enter().append("g");
-	drawDots(dots);
+
 	drawDots(newDots);
 	
 	

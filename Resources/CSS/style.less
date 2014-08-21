@@ -68,13 +68,16 @@ h2 {
 }
 
 .dot{
+	filter: url(#glowie);
 	font-size: 1.5em;
 	&.buyer{
+		filter: url(#outline);
 		fill: @orange;
 		stroke: @orange;
 		font-size: 2em;
 	}
 	&.seller{
+		filter: url(#glowie);
 		fill: @logo-green;
 		stroke-width: 2px;
 		stroke: @logo-green;
@@ -83,6 +86,7 @@ h2 {
 		fill: @good-deal;
 		-webkit-filter: drop-shadow(12px 12px 7px rgba(1,0,0,0.5));
 	}
+
 }
 
 .seller_dot{
@@ -100,3 +104,4 @@ h2 {
 		fill:white;
 	}
 }
+

@@ -85,14 +85,17 @@ h2 {
   stroke: white;
 }
 .dot {
+  filter: url(#glowie);
   font-size: 1.5em;
 }
 .dot.buyer {
+  filter: url(#outline);
   fill: #f0c135;
   stroke: #f0c135;
   font-size: 2em;
 }
 .dot.seller {
+  filter: url(#glowie);
   fill: #7ac441;
   stroke-width: 2px;
   stroke: #7ac441;
