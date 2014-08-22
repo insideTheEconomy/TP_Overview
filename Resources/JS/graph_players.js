@@ -1,5 +1,6 @@
 var playerChart = function(sel, w, h){
 	self = this;
+	this.winner;
 	this.dimen = {
 		padding: {
 			top: 100,
@@ -79,6 +80,7 @@ playerChart.prototype.draw = function(_d){
 	
 	var concat = data.buyer.concat(data.seller);
 	winner = concat.sort(function(a,b){return b.round_surplus - a.round_surplus})[0];
+	this.winnder = winner;
 	data[winner.role][winner.position%4].winner = true;
 	
 	
@@ -106,12 +108,13 @@ playerChart.prototype.draw = function(_d){
 			var _x = self.scales.x(d.transactions);
 			var _y = self.scales.y(d.round_surplus)
 			return "translate("+_x+","+_y+")"
-		}
-		
+		}	
 		})
+		
 		d3.select(".winner").append("circle").attr({
 			cx: 0, cy: -7, r: 25, class: "winner_circle"
 		})
+		
 	players.selectAll("text").data(function(d){return [ {shape:d.shape, role:d.role},{name:d.name}]}).enter().append("text").attr({
 			class : function(d){
 				var base = "dot "

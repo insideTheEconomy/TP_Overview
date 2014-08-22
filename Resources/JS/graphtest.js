@@ -46,6 +46,7 @@ function connect(host){
 //	trans = new transactionChart("#trans", 825,665);
 //	dist = new distChart("#trans", 825,665);
 	pChart = new playerChart("#trans", 825,665);
+
 	pChart.draw(players);
 	connection = new autobahn.Connection({
 		url: 'ws://'+host+':8080/ws',

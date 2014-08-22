@@ -44,9 +44,12 @@
 			<filter id="dot_glow">
 				
 				
-				<feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur"/>
+				<feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"/>
+					<feGaussianBlur in="SourceGraphic" stdDeviation="1" result="blur2"/>
 				<feMerge> 
-			        	<feMergeNode in = "blur"></feMergeNode>
+			        	
+						
+						<feMergeNode in = "blur2"></feMergeNode>
 						<feMergeNode in = "blur"></feMergeNode>
 			      </feMerge>
 			</filter>
@@ -78,7 +81,7 @@
 					       color-interpolation-filters="sRGB">
 					      <feGaussianBlur
 					         id="feGaussianBlur2997"
-					         stdDeviation="0.5"
+					         stdDeviation="1"
 					         in="SourceAlpha"
 					         result="result0" />
 					      <feComposite
