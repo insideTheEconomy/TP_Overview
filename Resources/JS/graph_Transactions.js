@@ -187,9 +187,9 @@ function connect(host){
 	
 	
 	
-	if (phase == 0 || phase == 3) {
+	if (phase == 2) {
 		trans = new transactionChart("#trans", 875, 645);
-	} else if (phase == 2) {
+	} else if (phase == 1) {
 		trans = new transactionChart("#trans", 875, 705);
 	}
 	
