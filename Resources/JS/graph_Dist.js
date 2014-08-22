@@ -2,10 +2,10 @@ var distChart = function(sel, w, h){
 	self = this;
 	this.dimen = {
 		padding: {
-			top: 100,
-			bottom:100,
-			right: 100,
-			left: 125
+			top: 110,
+			bottom:120,
+			right: 110,
+			left: 120
 		},
 		
 		width:w,	height:h
@@ -145,9 +145,9 @@ function connect(host){
 	
 	$("#dist").empty();
 	
-	dist = new distChart();
+	dist = new distChart("#dist", 840, 840);
 	connection = new autobahn.Connection({
-		url: 'ws://'+host+':8080/ws',
+		url: url,
 		realm: 'tradingpit'
 	});
 
