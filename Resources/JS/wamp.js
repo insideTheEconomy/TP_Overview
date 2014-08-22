@@ -22,7 +22,7 @@ function WAMP(clientType) {
 		connection.onopen = function(session) {
 			self.sess = session;
 			var currentSubscription = null;
-			loadScreen("shared_1.html");
+			loadScreen("shared_0.html");
 			
 			// Subscribe to phases
 			session.subscribe('pit.pub.phase', self.callbacks.onPhase).then(
