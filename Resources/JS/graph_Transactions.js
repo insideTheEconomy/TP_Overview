@@ -3,10 +3,10 @@ var transactionChart = function(sel, w, h){
 
 	this.dimen = {
 		padding: {
-			top: 90,
-			bottom:100,
-			right: 100,
-			left: 130
+			top: 110,
+			bottom:120,
+			right: 110,
+			left: 120
 		},
 		
 		width:w,	height:h
@@ -155,4 +155,63 @@ transactionChart.prototype.drawAxes = function(){
 //////////////////////////////
 //////////////////////////////
 
+var trans, sess, connection;
 
+function tick(a,t){
+	var spacer = (t.seconds%2 == 0) ? " " : ":";
+	$(".time").html(t.minutes+":"+t.seconds);
+}
+function setPhase(a,p){
+	$(".phase").html(p.name);
+}
+function printPlayers(a,p){
+	$("#log").html("<pre>"+JSON.stringify(p,null,3)+"</pre>");
+}
+function printOffers(a,o){
+	$("#log").html("<pre>"+JSON.stringify(o,null,3)+"</pre>");
+}
+
+$(function(){
+	connect("localhost")
+	$("#tpserver").change(function(){
+			alert("Using "+$("#tpserver").val());
+			connect($("#tpserver").val())
+	})
+
+})
+
+function connect(host){
+	trans = null;
+	
+	$("#trans").empty();
+	
+	
+	
+	if (phase == 2) {
+		trans = new transactionChart("#trans", 875, 645);
+	} else if (phase == 1) {
+		trans = new transactionChart("#trans", 875, 705);
+	}
+	
+	
+	connection = new autobahn.Connection({
+		url: url,
+		realm: 'tradingpit'
+	});
+
+	// Set up 'onopen' handler
+	connection.onopen = function(session) {
+		console.log("connected to wamp server");
+		sess = session;
+		var currentSubscription = null;
+		//sess.subscribe("pit.pub.clock", tick);
+		//sess.subscribe("pit.pub.phase", setPhase);
+		//sess.subscribe("pit.pub.players", printPlayers);
+		//sess.subscribe("pit.pub.offers", printOffers);
+		sess.subscribe("pit.pub.transactions", function(a,d){
+			console.log("TRANSACTIONS: ",d);
+			trans.draw(d.transactions);
+		});
+	}
+	connection.open();
+}

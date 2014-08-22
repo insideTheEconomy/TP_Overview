@@ -2,10 +2,10 @@ var distChart = function(sel, w, h){
 	self = this;
 	this.dimen = {
 		padding: {
-			top: 100,
-			bottom:100,
-			right: 100,
-			left: 125
+			top: 110,
+			bottom:120,
+			right: 110,
+			left: 120
 		},
 		
 		width:w,	height:h
@@ -110,5 +110,4 @@ distChart.prototype.drawAxes = function(){
 ////End Distribution Chart ///
 //////////////////////////////
 //////////////////////////////
-
 
