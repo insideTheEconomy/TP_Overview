@@ -84,9 +84,15 @@ h2 {
   fill: none;
   stroke: white;
 }
+.dot_group > .name,
+.axis {
+  font-family: "label";
+  filter: url(#outline);
+}
 .dot {
   filter: url(#glowie);
   font-size: 1.5em;
+  fill: #a4dbe8;
 }
 .dot.buyer {
   filter: url(#outline);
@@ -103,6 +109,25 @@ h2 {
 .dot.eq_price {
   fill: #00ff00;
   -webkit-filter: drop-shadow(12px 12px 7px rgba(1, 0, 0, 0.5));
+}
+.dot_group .dot {
+  font-size: 2em;
+}
+.dot_group .buyer {
+  filter: url(#glowie);
+}
+.dot_group .buyer.square {
+  font-size: 3.5em;
+}
+.dot_group .circle {
+  font-size: 3.5em;
+}
+.winner_circle {
+  fill: #a4dbe8;
+  fill-opacity: 0.2;
+  stroke: white;
+  stroke-width: 2px;
+  filter: url("#dot_glow");
 }
 .seller_dot {
   fill: #7ac441;

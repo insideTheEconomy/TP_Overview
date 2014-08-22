@@ -23,10 +23,11 @@
 
 		<script type="text/javascript" charset="utf-8" src = "JS/d3.js"></script>
 		<script type="text/javascript" charset="utf-8" src = "JS/jquery-1.9.1.js"></script>
-
+		<script type="text/javascript" charset="utf-8" src = "JS/graph_players.js"></script>
 		<script type="text/javascript" charset="utf-8" src = "JS/graph_Dist.js"></script>
 		<script type="text/javascript" charset="utf-8" src = "JS/graph_Transactions.js"></script>
 		<script type="text/javascript" charset="utf-8" src = "JS/graphtest.js"></script>
+		<link rel="stylesheet" href="CSS/fonts.css" type="text/css" media="screen" title="no title" charset="utf-8">
 		<link rel="stylesheet" href="CSS/style.css" type="text/css" media="screen" title="no title" charset="utf-8">
 		<link rel="stylesheet" href="CSS/ovrview-style.css" type="text/css" media="screen" title="no title" charset="utf-8">
 		<link rel="stylesheet" href="CSS/jquery-ui-custom.css" type="text/css" media="screen" title="no title" charset="utf-8">
@@ -41,15 +42,13 @@
 
 
 			<filter id="dot_glow">
-				<feGaussianBlur in="SourceAlpha" stdDeviation="2.2"/>
-				<feOffset dx="2" dy="2" result="offsetblur"/>
-				<feFlood flood-color="rgba(1,0,0,1)"/>
-				<feComposite in2="offsetblur" operator="in"/>
-				<feMerge>
-				<feMergeNode/>
-					<feMergeNode in="SourceGraphic"/>
-					<feMergeNode in="offsetblur"/>
-				</feMerge>
+				
+				
+				<feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur"/>
+				<feMerge> 
+			        	<feMergeNode in = "blur"></feMergeNode>
+						<feMergeNode in = "blur"></feMergeNode>
+			      </feMerge>
 			</filter>
 		
 			<defs>
@@ -66,7 +65,6 @@
 				
 			    </feComponentTransfer>
 				<feOffset dx="0" dy="0" in = "colored" result = "off" />
-				<feComposite in="SourceGraphic" in2="off" operator="add" result="comp"/>
 			      <feMerge> 
 			        	<feMergeNode in = "colored"></feMergeNode>
 						<feMergeNode in = "blackened"></feMergeNode>
