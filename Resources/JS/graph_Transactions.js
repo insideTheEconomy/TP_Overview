@@ -1,6 +1,6 @@
 var transactionChart = function(sel, w, h){
 	self = this;
-
+	this.transactions = [];
 	this.dimen = {
 		padding: {
 			top: 110,
@@ -76,6 +76,9 @@ var transactionChart = function(sel, w, h){
 		
 }
 
+
+
+
 transactionChart.prototype.draw = function(_d){
 	var shapes = this.shapes;
 	var drawDots = function(_dots){
@@ -107,43 +110,58 @@ transactionChart.prototype.draw = function(_d){
 
 	drawDots(newDots);
 	
-	
+}
 
-	
-	
-	
 
+transactionChart.prototype.push = function(_d){
+	var self = this;
+	console.log("TRANSACTION",_d);
+	this.transactions.push(_d);
+	var shapes = this.shapes;
+	var drawDots = function(_dots){
+		_dots.attr({
+			transform : function(d,i){
+				return "translate("+self.scales.x(i)+","+self.scales.y(d.price)+")"
+				}
+			}).selectAll("text").data(function(d){
+				return[d.seller, d.buyer]
+			}).enter().append("text")
+			.attr({
+				class: function(d,i){return ["dot seller","dot buyer"][i]},
+				"text-anchor":"middle",
+				dy: function(d,i){return [0,1][i]}
+			})
+			.text(function(d){return shapes[d.role][d.shape]})
+	}
 	
 	
-	
+		if(self.transactions.length > self.scales.x.domain()[1]){
+			self.scales.x.domain([0,self.transactions.length]) 
+			self.axes.x.scale(self.scales.x);
+			this.xAxis.call(this.axes.x);
+			var dots = this.dotGroup.selectAll("g");
+			drawDots(dots);
+
+		}
 		
-/*	this.dotGroup.selectAll("text").data(_d).enter().append("text")
-		.attr({
-			fill: "red",
-			"text-anchor":"middle",
-			x: function(d,i){
-				return self.scales.x(i)
-			},
-			y: function(d,i){return self.scales.y(d.price)}
-		}).text(function(d){
-			console.log("shapes",shapes)
-			//return d.seller.shape;
-			return shapes.seller[d.buyer.shape]
-			});*/
+	var newDots = this.dotGroup.selectAll("g").data(this.transactions).enter().append("g");
+
+	drawDots(newDots);
 	
 }
+
 
 transactionChart.prototype.drawAxes = function(){
 	this.xAxis = this.svg.append("g")
 	  .attr("class", "axis x")
 	  .append("g")
-	    .attr("transform", "translate(0,"+self.dimen.inner.bottom+ ")")
+	    .attr("transform", "translate(0,"+(self.dimen.inner.bottom+20)+ ")")
 	    .call(this.axes.x);
 	
 		this.yAxix = this.svg.append("g")
 		  .attr("class", "axis y")
 		  .append("g")
-		    .attr("transform", "translate("+self.dimen.padding.left+ ",0)")
+		    .attr("transform", "translate("+(self.dimen.padding.left-20)+ ",0)")
 		    .call(this.axes.y)
 }
 

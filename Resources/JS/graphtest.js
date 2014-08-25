@@ -17,10 +17,12 @@ function printOffers(a,o){
 
 $(function(){
 	connect("localhost")
-	$("#tpserver").change(function(){
+	console.log("JQUERY CLOSURE");
+		connection.open();
+/*	$("#tpserver").change(function(){
 			alert("Using "+$("#tpserver").val());
 			connect($("#tpserver").val())
-	})
+	})*/
 
 })
 
@@ -36,18 +38,18 @@ players.seller.forEach(makeTransactions);
 
 function connect(host){
 	
-	
+	connection = null;
 	trans = null;
 	dist = null;
 	
 	$("#trans").empty();
 	$("#dist").empty();
 	
-//	trans = new transactionChart("#trans", 825,665);
+	trans = new transactionChart("#trans", 825,665);
 //	dist = new distChart("#trans", 825,665);
-	pChart = new playerChart("#trans", 825,665);
+//	pChart = new playerChart("#trans", 825,665);
 
-	pChart.draw(players);
+//	pChart.draw(players);
 	connection = new autobahn.Connection({
 		url: 'ws://'+host+':8080/ws',
 		realm: 'tradingpit'
@@ -58,16 +60,22 @@ function connect(host){
 		console.log("connected to wamp server");
 		sess = session;
 		var currentSubscription = null;
-		sess.subscribe("pit.pub.clock", tick);
-		sess.subscribe("pit.pub.phase", setPhase);
-		sess.subscribe("pit.pub.players", printPlayers);
-		sess.subscribe("pit.pub.offers", printOffers);
-		sess.subscribe("pit.pub.transactions", function(a,d){
+	//	sess.subscribe("pit.pub.clock", tick);
+	//	sess.subscribe("pit.pub.phase", setPhase);
+	//	sess.subscribe("pit.pub.players", printPlayers);
+	//	sess.subscribe("pit.pub.offers", printOffers);
+	/*	sess.subscribe("pit.pub.transactions", function(a,d){
 			//console.log("TRANSACTIONS: ",d);
-		//	trans.draw(d.transactions);
+			trans.draw(d.transactions);
 		//	dist.draw(d.distribution);
 			
+			}); */
+			sess.subscribe("pit.pub.transaction", function(a,d){
+				//console.log("TRANSACTIONS: ",d);
+				trans.push(d);
+			//	dist.draw(d.distribution);
+
 			});
 	}
-	connection.open();
+
 }
