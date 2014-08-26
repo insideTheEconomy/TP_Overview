@@ -7,7 +7,7 @@ function WAMP(clientType) {
 	try {
 		autobahn = require('autobahn');
 	} catch (e) {
-		// when running in browser, AutobahnJS will be included without a module system.
+		// when running in browser, AutobahnJS fwill be included without a module system.
 		console.log(e);
 	}
 	
@@ -64,7 +64,7 @@ function WAMP(clientType) {
 				$("#time").html(kwargs.end_of_phase.minutes+":"+kwargs.end_of_phase.seconds);
 			},
 			rpcCall: function(call) {
-				console.log(call);
+				//console.log(call);
 			},
 			onPhase: function(args, kwargs, details) {
 				console.log("onPhase: ", kwargs);
@@ -73,22 +73,22 @@ function WAMP(clientType) {
 					
 						case "Setup":
 							phase = 0;
-							//loadScreen("shared_0.html");
+							loadScreen("shared_0.html");
 							break;
 						
 						case "Round":
 							phase = 1;
-							//loadScreen("shared_1.html");
+							loadScreen("shared_1.html");
 							break;
 						
 						case "Wrap-up":
 							phase = 2;
-							//loadScreen("shared_2.html");
+							loadScreen("shared_2.html");
 							break;
 						
 						case "Player Recap":
 							phase = 3;
-							//loadScreen("shared_0.html");
+							loadScreen("shared_0.html");
 							break;
 						
 						}

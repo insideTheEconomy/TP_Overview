@@ -96,7 +96,7 @@ transactionChart.prototype.draw = function(_d){
 			})
 			.text(function(d){return shapes[d.role][d.shape]})
 	}
-	console.log("DRAW DOTS!",_d);
+	console.log("DRAW TRANSACTION DOTS!",_d);
 		
 	if(_d.length > self.scales.x.domain()[1]){
 		self.scales.x.domain([0,_d.length]) 

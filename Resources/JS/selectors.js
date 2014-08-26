@@ -4,7 +4,6 @@
 $(function () {
 	//Happens only FIRST time program is run
 	if (!initiated) {
-		console.log("Init");
 		initHTML = $(document.body).html();
 		initiated = true;
 	}	
