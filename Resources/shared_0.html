@@ -1,4 +1,57 @@
-<script type="text/javascript" charset="utf-8" src = "JS/graph_Dist.js"></script>
+<script type="text/javascript" charset="utf-8" src = "JS/graph_players.js"></script>
+
+<svg height="0">
+	<filter id="dot_glow">
+		<feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"/>
+			<feGaussianBlur in="SourceGraphic" stdDeviation="1" result="blur2"/>
+		<feMerge>
+				<feMergeNode in = "blur2"></feMergeNode>
+				<feMergeNode in = "blur"></feMergeNode>
+	      </feMerge>
+	</filter>
+	<defs>
+	    <filter id="glowie" x="-150%" y="-150%" height="300%" width="300%">
+	    <feGaussianBlur in="SourceAlpha" stdDeviation="6" result="blurred"></feGaussianBlur>
+	<feGaussianBlur in="SourceAlpha" stdDeviation="2" result="blackened"></feGaussianBlur>
+	    <feComponentTransfer in1 = "blurred" result="colored">
+	        <feFuncR type="linear" slope="1" intercept="1"></feFuncR>
+	        <feFuncG type="linear" slope="1" intercept="0.6"></feFuncG>
+	        <feFuncB type="linear" slope="1" intercept="0"></feFuncB>
+	        <feFuncA type="linear" slope="1" ></feFuncA>
+	    </feComponentTransfer>
+		<feOffset dx="0" dy="0" in = "colored" result = "off" />
+	      <feMerge> 
+	        	<feMergeNode in = "colored"></feMergeNode>
+				<feMergeNode in = "blackened"></feMergeNode>
+	        	<feMergeNode in="SourceGraphic"></feMergeNode> 
+	      </feMerge>
+	    </filter>
+			<filter
+			       id="outline"
+			       color-interpolation-filters="sRGB">
+			      <feGaussianBlur
+			         id="feGaussianBlur2997"
+			         stdDeviation="1"
+			         in="SourceAlpha"
+			         result="result0" />
+			      <feComposite
+			         id="feComposite2999"
+			         in2="result0"
+			         result="result3"
+			         operator="arithmetic"
+			         in="SourceGraphic"
+			         k2="1"
+			         k3="10" />
+			      <feComposite
+			         id="feComposite3001"
+			         in2="result3"
+			         k2="1"
+			         operator="in"
+			         in="result3"
+			         result="result4" />
+			    </filter>
+	  </defs>
+</svg>
 
 <h1 style="margin-left:75px;">TODAY'S MARKET REPORT</h1>
 
@@ -12,5 +65,59 @@
 
 <h2 style="margin-left:1175px; width:450px !important; margin-top:-50px;">The Day's Transactions</h2>
 <div style="width:875px; height:840px; top:135px; left:975px;" class="greybox">
-	<div id="dist" class="inline" ></div>
+	<div id="eorTrans" class="inline" style="fill:white;" ></div>
 </div>
+
+<script>
+
+var pChart, sess, connection, bDrawn;
+
+$(function(){
+	connect("localhost");
+	connection.open();
+})
+
+function connect(host){
+	
+	connection = null;
+	
+	connection = new autobahn.Connection({
+		url: 'ws://'+host+':8080/ws',
+		realm: 'tradingpit'
+	});
+	
+	$("#eorTrans").empty();
+	
+	pChart = new playerChart("#eorTrans", 875,840);
+	
+	// Set up 'onopen' handler
+	connection.onopen = function(session) {
+		console.log("pChart connected to wamp");
+		sess = session;
+		var currentSubscription = null;
+		bDrawn = false;
+		
+		session.subscribe('pit.pub.round', onRound).then(
+
+	      function(subscription) {
+	        // console.log("subscription successfull", subscription);
+	         currentSubscription = subscription;
+	      },
+
+	      function(error) {
+	        //console.log("subscription failed", error);
+	      }
+
+	   );
+	}
+
+}
+
+function onRound(args, kwargs, details) {
+	if (bDrawn == false) {
+		pChart.draw(kwargs.players);
+  	}
+   	bDrawn = true;
+}
+
+</script>

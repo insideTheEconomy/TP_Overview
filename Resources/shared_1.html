@@ -1,35 +1,38 @@
 
-<svg height="0">
+<script type="text/javascript" charset="utf-8" src = "JS/graph_Transactions.js"></script>
 
+<svg height="0">
+	<filter id="dot_glow">
+		<feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"/>
+			<feGaussianBlur in="SourceGraphic" stdDeviation="1" result="blur2"/>
+		<feMerge>
+				<feMergeNode in = "blur2"></feMergeNode>
+				<feMergeNode in = "blur"></feMergeNode>
+	      </feMerge>
+	</filter>
 	<defs>
 	    <filter id="glowie" x="-150%" y="-150%" height="300%" width="300%">
 	    <feGaussianBlur in="SourceAlpha" stdDeviation="6" result="blurred"></feGaussianBlur>
-	
-	    
 	<feGaussianBlur in="SourceAlpha" stdDeviation="2" result="blackened"></feGaussianBlur>
 	    <feComponentTransfer in1 = "blurred" result="colored">
 	        <feFuncR type="linear" slope="1" intercept="1"></feFuncR>
 	        <feFuncG type="linear" slope="1" intercept="0.6"></feFuncG>
 	        <feFuncB type="linear" slope="1" intercept="0"></feFuncB>
 	        <feFuncA type="linear" slope="1" ></feFuncA>
-		
 	    </feComponentTransfer>
 		<feOffset dx="0" dy="0" in = "colored" result = "off" />
-		<feComposite in="SourceGraphic" in2="off" operator="add" result="comp"/>
 	      <feMerge> 
 	        	<feMergeNode in = "colored"></feMergeNode>
 				<feMergeNode in = "blackened"></feMergeNode>
 	        	<feMergeNode in="SourceGraphic"></feMergeNode> 
-
 	      </feMerge>
 	    </filter>
-	
 			<filter
 			       id="outline"
 			       color-interpolation-filters="sRGB">
 			      <feGaussianBlur
 			         id="feGaussianBlur2997"
-			         stdDeviation="0.5"
+			         stdDeviation="1"
 			         in="SourceAlpha"
 			         result="result0" />
 			      <feComposite
@@ -48,12 +51,8 @@
 			         in="result3"
 			         result="result4" />
 			    </filter>
-	
 	  </defs>
-
 </svg>
-
-<script type="text/javascript" charset="utf-8" src = "JS/graph_Transactions.js"></script>
 
 <h1 style="margin-left:75px;">MARKET UPDATE</h1>
 
@@ -87,3 +86,41 @@
 	
 	<g transform="translate(249,395)" style="float: left; position: absolute; left: 725px; top: 45px;"><text class="dot buyer" text-anchor="middle" dy="1" style="font-size: 3.45em; color: #f0c135;">■</text></g>	
 </div>
+
+<script>
+
+var trans, sess, connection;
+
+$(function(){
+	connect("localhost");
+	connection.open();
+})
+
+function connect(host){
+	
+	connection = null;
+	
+	connection = new autobahn.Connection({
+		url: 'ws://'+host+':8080/ws',
+		realm: 'tradingpit'
+	});
+	
+	$("#trans").empty();
+	
+	trans = new transactionChart("#trans", 875,645);
+	
+	// Set up 'onopen' handler
+	connection.onopen = function(session) {
+		console.log("transChart connected to wamp");
+		sess = session;
+		var currentSubscription = null;
+		
+		sess.subscribe("pit.pub.transaction", function(a,d){
+			//console.log("TRANSACTIONS: ",d);
+			trans.push(d);
+		});
+	}
+
+}
+
+</script>
