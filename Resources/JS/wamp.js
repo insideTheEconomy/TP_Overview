@@ -59,7 +59,9 @@ function WAMP(clientType) {
 		
 		   session.subscribe("pit.pub.transaction", function(a,d){
 				console.log("TRANSACTION: ",d);
-				drawNewTransaction(d);
+				if (Boolean(trans)) {
+					trans.push(d);
+				}
 			});
 			
 			session.subscribe("pit.pub.transactions", function(a,d){
@@ -102,37 +104,56 @@ function WAMP(clientType) {
 					
 						case "Setup":
 							phase = 0;
-							loadScreen("shared_0.html");
+							loadScreen("shared_0.html", function() {
+								$("#eorTrans").empty();
+								pChart = new playerChart("#eorTrans", 875,840);
+								pChart.draw(roundData.players);
+							});
 							break;
 						
 						case "Round":
 							phase = 1;
-							loadScreen("shared_1.html");
+							loadScreen("shared_1.html", function() {
+								$("#trans").empty();
+								trans = new transactionChart("#trans", 875,645);
+							});
 							break;
 						
 						case "Wrap-up":
 							phase = 2;
-							loadScreen("shared_2.html");
+							loadScreen("shared_2.html", function() {
+								$("#dist").empty();
+								dist = new distChart("#dist", 875,705);
+								dist.draw(distData);
+							});
 							break;
 						
 						case "Player Recap":
 							phase = 3;
-							loadScreen("shared_0.html");
+							loadScreen("shared_0.html", function() {
+								$("#eorTrans").empty();
+								pChart = new playerChart("#eorTrans", 875,840);
+								pChart.draw(roundData.players);
+							});
 							break;
 						
 						}
 				} else {
 					switch(kwargs.name){
 						case "Setup":
+							pChart = null;
 							break;
 						
 						case "Round":
+							trans = null;
 							break;
 						
 						case "Wrap-up":
+							dist = null;
 							break;
 						
 						case "Player Recap":
+							pChart = null;
 							break;
 						
 					}
