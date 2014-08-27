@@ -88,18 +88,18 @@ h2 {
 .axis {
   font-family: "label";
   filter: url(#outline);
-  font-size: 1.2em;
+  font-size: 19px;
 }
 .dot {
   filter: url(#glowie);
-  font-size: 1.5em;
+  font-size: 24px;
   fill: #a4dbe8;
 }
 .dot.buyer {
   filter: url(#outline);
   fill: #f0c135;
   stroke: #f0c135;
-  font-size: 2em;
+  font-size: 32px;
 }
 .dot.seller {
   filter: url(#glowie);
@@ -109,19 +109,18 @@ h2 {
 }
 .dot.eq_price {
   fill: #00ff00;
-  -webkit-filter: drop-shadow(12px 12px 7px rgba(1, 0, 0, 0.5));
 }
 .dot_group .dot {
-  font-size: 2em;
+  font-size: 32px;
 }
 .dot_group .buyer {
   filter: url(#glowie);
 }
 .dot_group .buyer.square {
-  font-size: 3.5em;
+  font-size: 56px;
 }
 .dot_group .circle {
-  font-size: 3.5em;
+  font-size: 56px;
 }
 .winner_circle {
   fill: #a4dbe8;
