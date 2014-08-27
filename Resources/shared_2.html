@@ -78,35 +78,10 @@
 var dist, sess, connection;
 
 $(function(){
-	connect("localhost");
-	connection.open();
-})
-
-function connect(host){
-	
-	connection = null;
-	
-	connection = new autobahn.Connection({
-		url: 'ws://'+host+':8080/ws',
-		realm: 'tradingpit'
-	});
-	
 	$("#dist").empty();
 	
 	dist = new distChart("#dist", 875,705);
 	
-	// Set up 'onopen' handler
-	connection.onopen = function(session) {
-		console.log("distChart connected to wamp");
-		sess = session;
-		var currentSubscription = null;
-		
-		sess.subscribe("pit.pub.transactions", function(a,d){
-			dist.draw(d.distribution);
-			//console.log(d.distribution);
-		});
-	}
-
-}
-
+	dist.draw(distData);
+})
 </script>

@@ -43,10 +43,39 @@ function WAMP(clientType) {
 			function(error) {
 				//console.log("subscription failed", error);
 			});
+			
+			session.subscribe('pit.pub.round', storeRound).then(
+
+		      function(subscription) {
+		         console.log("Round Subscription Successfull!", subscription);
+		         currentSubscription = subscription;
+		      },
+
+		      function(error) {
+		        //console.log("subscription failed", error);
+		      }
+
+		   );
+		
+		   session.subscribe("pit.pub.transaction", function(a,d){
+				console.log("TRANSACTION: ",d);
+				drawNewTransaction(d);
+			});
+			
+			session.subscribe("pit.pub.transactions", function(a,d){
+				console.log("Distributiion Data: ", d.distribution);
+				distData = d.distribution;
+			});
+			
+			session.call("pit.rpc.getPhase", [], {}).then(function(r){
+				console.log("SharedScreen Get Phase: ", r);		
+			});
 		};
 
 		// Open connection
 		connection.open();
+		
+		
 	}
 
 	var sharedscreenwamp = function() {
@@ -117,3 +146,8 @@ function WAMP(clientType) {
 	
 	
 w = new sharedscreenwamp();
+
+function storeRound(args, kwargs, details) {
+	console.log("storeRound(), roundData: ", kwargs);
+	roundData = kwargs;
+}

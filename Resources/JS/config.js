@@ -18,6 +18,9 @@ var reserve;
 var name;
 var phase;
 
+var distData;
+var roundData;
+
 // --------------------------- //
 
 try{

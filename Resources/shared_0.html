@@ -70,54 +70,15 @@
 
 <script>
 
-var pChart, sess, connection, bDrawn;
+var pChart;
 
 $(function(){
-	connect("localhost");
-	connection.open();
-})
-
-function connect(host){
-	
-	connection = null;
-	
-	connection = new autobahn.Connection({
-		url: 'ws://'+host+':8080/ws',
-		realm: 'tradingpit'
-	});
-	
 	$("#eorTrans").empty();
 	
+	bDrawn = false;
 	pChart = new playerChart("#eorTrans", 875,840);
 	
-	// Set up 'onopen' handler
-	connection.onopen = function(session) {
-		console.log("pChart connected to wamp");
-		sess = session;
-		var currentSubscription = null;
-		bDrawn = false;
-		
-		session.subscribe('pit.pub.round', onRound).then(
-
-	      function(subscription) {
-	        // console.log("subscription successfull", subscription);
-	         currentSubscription = subscription;
-	      },
-
-	      function(error) {
-	        //console.log("subscription failed", error);
-	      }
-
-	   );
-	}
-
-}
-
-function onRound(args, kwargs, details) {
-	if (bDrawn == false) {
-		pChart.draw(kwargs.players);
-  	}
-   	bDrawn = true;
-}
+	pChart.draw(roundData.players);
+})
 
 </script>

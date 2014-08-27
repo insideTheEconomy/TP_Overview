@@ -89,38 +89,16 @@
 
 <script>
 
-var trans, sess, connection;
+var trans;
 
 $(function(){
-	connect("localhost");
-	connection.open();
-})
-
-function connect(host){
-	
-	connection = null;
-	
-	connection = new autobahn.Connection({
-		url: 'ws://'+host+':8080/ws',
-		realm: 'tradingpit'
-	});
-	
 	$("#trans").empty();
 	
 	trans = new transactionChart("#trans", 875,645);
-	
-	// Set up 'onopen' handler
-	connection.onopen = function(session) {
-		console.log("transChart connected to wamp");
-		sess = session;
-		var currentSubscription = null;
-		
-		sess.subscribe("pit.pub.transaction", function(a,d){
-			//console.log("TRANSACTIONS: ",d);
-			trans.push(d);
-		});
-	}
+})
 
+var drawNewTransaction = function(newTrans) {
+	trans.push(newTrans);
 }
 
 </script>
