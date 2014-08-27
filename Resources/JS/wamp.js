@@ -68,7 +68,7 @@ function WAMP(clientType) {
 			});
 			
 			session.call("pit.rpc.getPhase", [], {}).then(function(r){
-				console.log("SharedScreen Get Phase: ", r);		
+				console.log("SharedScreen Get Phase: ", r);
 			});
 		};
 
