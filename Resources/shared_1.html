@@ -86,19 +86,3 @@
 	
 	<g transform="translate(249,395)" style="float: left; position: absolute; left: 725px; top: 45px;"><text class="dot buyer" text-anchor="middle" dy="1" style="font-size: 3.45em; color: #f0c135;">■</text></g>	
 </div>
-
-<script>
-
-var trans;
-
-$(function(){
-	$("#trans").empty();
-	
-	trans = new transactionChart("#trans", 875,645);
-})
-
-var drawNewTransaction = function(newTrans) {
-	trans.push(newTrans);
-}
-
-</script>

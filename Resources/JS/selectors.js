@@ -14,7 +14,6 @@ $(function () {
 	loadScreen();
 });
 
-var loadScreen = function(toLoad) {
-		$(document.body).load(toLoad, function() {
-		});
+var loadScreen = function(toLoad, onLoad) {
+		$(document.body).load(toLoad, onLoad);
 }

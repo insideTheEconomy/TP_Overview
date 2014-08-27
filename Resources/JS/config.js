@@ -20,6 +20,9 @@ var phase;
 
 var distData;
 var roundData;
+var trans;
+var pChart;
+var dist;
 
 // --------------------------- //
 
