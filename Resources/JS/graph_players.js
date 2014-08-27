@@ -60,10 +60,10 @@ playerChart.prototype.draw = function(_d){
 		}
 		
 		this.scales.x.range([this.dimen.padding.left, this.dimen.inner.right])
-			.domain(d3.extent( data.buyer.concat(data.seller).map(function(d,i,a){return (d.hasOwnProperty(transactions)) ? d.transactions : 0; })))
+			.domain(d3.extent( data.buyer.concat(data.seller).map(function(d,i,a){return d.transactions})))
 			
 		this.scales.y.range([this.dimen.inner.bottom, this.dimen.padding.top])
-			.domain(d3.extent( data.buyer.concat(data.seller).map(function(d,i,a){return (d.hasOwnProperty(round_surplus)) ?  d.round_surplus : 0 })))
+			.domain(d3.extent( data.buyer.concat(data.seller).map(function(d,i,a){return d.round_surplus})))
 		
 	}
 	
