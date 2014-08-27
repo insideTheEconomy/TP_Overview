@@ -45,8 +45,8 @@ function connect(host){
 	$("#trans").empty();
 	$("#dist").empty();
 	
-	//trans = new transactionChart("#trans", 825,665);
-	dist = new distChart("#trans", 825,665);
+	trans = new transactionChart("#trans", 875,645);
+	//dist = new distChart("#trans", 825,665);
 	//pChart = new playerChart("#trans", 825,665);
 
 	//pChart.draw(players);
@@ -70,12 +70,12 @@ function connect(host){
 		//	dist.draw(d.distribution);
 			
 			}); */
-			sess.subscribe("pit.pub.transactions", function(a,d){
+			sess.subscribe("pit.pub.transaction", function(a,d){
 				//console.log("TRANSACTIONS: ",d);
-				//trans.push(d);
-				dist.draw(d.distribution);
-				console.log(d.distribution);
-			});
+				trans.push(d);
+				//dist.draw(d.distribution);
+				//console.log(d.distribution);
+			}); 
 	}
 
 }
