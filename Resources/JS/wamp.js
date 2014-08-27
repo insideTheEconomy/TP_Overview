@@ -59,15 +59,15 @@ function WAMP(clientType) {
 		
 		   session.subscribe("pit.pub.transaction", function(a,d){
 				console.log("TRANSACTION: ",d);
-				if (Boolean(trans)) {
+				if (trans) {
 					trans.push(d);
 				}
 			});
 			
-			session.subscribe("pit.pub.transactions", function(a,d){
+			/*session.subscribe("pit.pub.transactions", function(a,d){
 				console.log("Distributiion Data: ", d.distribution);
 				distData = d.distribution;
-			});
+			}); */
 			
 			session.call("pit.rpc.getPhase", [], {}).then(function(r){
 				console.log("SharedScreen Get Phase: ", r);
@@ -124,7 +124,7 @@ function WAMP(clientType) {
 							loadScreen("shared_2.html", function() {
 								$("#dist").empty();
 								dist = new distChart("#dist", 875,705);
-								dist.draw(distData);
+								dist.draw(roundData.transactions.distribution);
 							});
 							break;
 						
