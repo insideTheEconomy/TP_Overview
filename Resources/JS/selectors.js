@@ -1,7 +1,7 @@
  
 
-var exec = require('child_process').exec,
-	    child;
+/*var exec = require('child_process').exec,
+	    child;*/
 	
 $(function () {
 	//Happens only FIRST time program is run
