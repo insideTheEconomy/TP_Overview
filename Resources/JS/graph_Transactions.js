@@ -1,5 +1,6 @@
 var transactionChart = function(sel, w, h){
 	self = this;
+	this.polys = polyBuilder(18);
 	this.transactions = [];
 	this.dimen = {
 		padding: {
@@ -112,8 +113,46 @@ transactionChart.prototype.draw = function(_d){
 	
 }
 
-
 transactionChart.prototype.push = function(_d){
+	var self = this;
+	console.log("TRANSACTION",_d);
+	this.transactions.push(_d);
+	var shapes = this.shapes;
+	var drawDots = function(_dots){
+		_dots.attr({
+			transform : function(d,i){
+				return "translate("+self.scales.x(i)+","+self.scales.y(d.price)+")"
+				}
+			})
+			.selectAll("polygon").data(function(d){
+				return[d.seller, d.buyer]
+			}).enter().append("polygon")
+			.attr({
+				class: function(d,i){return ["dot seller","dot buyer"][i]},
+				"points":function(d){
+					var pts = self.polys[d.role][d.shape]
+					console.log(pts);
+					 return pts }
+			})
+	}
+	
+	
+		if(self.transactions.length > self.scales.x.domain()[1]){
+			self.scales.x.domain([0,self.transactions.length]) 
+			self.axes.x.scale(self.scales.x);
+			this.xAxis.call(this.axes.x);
+			var dots = this.dotGroup.selectAll("g");
+			drawDots(dots);
+
+		}
+		
+	var newDots = this.dotGroup.selectAll("g").data(this.transactions).enter().append("g");
+
+	drawDots(newDots);
+	
+}
+
+/*transactionChart.prototype.push = function(_d){
 	var self = this;
 	console.log("TRANSACTION",_d);
 	this.transactions.push(_d);
@@ -148,7 +187,7 @@ transactionChart.prototype.push = function(_d){
 
 	drawDots(newDots);
 	
-}
+} */
 
 
 transactionChart.prototype.drawAxes = function(){
