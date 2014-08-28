@@ -104,10 +104,11 @@ function WAMP(clientType) {
 					
 						case "Setup":
 							phase = 0;
-							loadScreen("shared_0.html", function() {
+							loadScreen("shared_2.html", function() {
 								$("#eorTrans").empty();
-								pChart = new playerChart("#eorTrans", 875,840);
+								pChart = new playerChart("#eorTrans", 875,705);
 								pChart.draw(roundData.players);
+								$("#winner").html(pChart.winner);
 							});
 							break;
 						
@@ -122,18 +123,19 @@ function WAMP(clientType) {
 						case "Wrap-up":
 							phase = 2;
 							loadScreen("shared_2.html", function() {
-								$("#dist").empty();
-								dist = new distChart("#dist", 875,705);
-								dist.draw(roundData.transactions.distribution);
+								$("#eorTrans").empty();
+								pChart = new playerChart("#eorTrans", 875,705);
+								pChart.draw(roundData.players);
+								$("#winner").html(pChart.winner);
 							});
 							break;
 						
 						case "Player Recap":
 							phase = 3;
 							loadScreen("shared_0.html", function() {
-								$("#eorTrans").empty();
-								pChart = new playerChart("#eorTrans", 875,840);
-								pChart.draw(roundData.players);
+								$("#dist").empty();
+								dist = new distChart("#dist", 875,840);
+								dist.draw(roundData.transactions.distribution);
 							});
 							break;
 						

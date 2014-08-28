@@ -6,8 +6,8 @@
   "keywords": [ "monadnock", "node-webkit" ],
   "window": {
     "title": "TP Shared Screen",
-    "toolbar": true,
-    "frame": true,
+    "toolbar": false,
+    "frame": false,
 	"fullscreen":false,
     "width": 1920,
     "height": 1080,
