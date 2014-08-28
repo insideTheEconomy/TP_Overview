@@ -2,6 +2,9 @@
 
 //-- Variable Declarations  -- //
 
+var goKiosk;
+var hideMouse;
+
 var role;
 var opponent;
 var position;
@@ -41,6 +44,8 @@ try{
 	curScreen = settings.curScreen;
 	name = "null";
 	phase = 0;
+	goKiosk = settings.kiosk;
+	hideMouse = settings.hideMouse;
 }
 catch(e){
 	console.log("Using DEFAULT cfg: ", e);
