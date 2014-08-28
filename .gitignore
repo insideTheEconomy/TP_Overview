@@ -3,3 +3,5 @@ Resources/node_modules/
 Resources/webkitbuilds/
 
 *-ck.js
+
+Resources/JS/selectors-ck.js
