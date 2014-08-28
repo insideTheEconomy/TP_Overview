@@ -68,10 +68,14 @@ playerChart.prototype.draw = function(_d){
 		
 	}
 	
+	var noDec = function(i){
+		return (i%1==0) ? i : null;
+	}
+	
 	this.setAxes = function(){
 		this.axes=	{
-				x: d3.svg.axis().scale(this.scales.x),
-				y : d3.svg.axis().scale(this.scales.y).orient("left")
+				x: d3.svg.axis().tickFormat(noDec).scale(this.scales.x),
+				y : d3.svg.axis().tickFormat(noDec).scale(this.scales.y).orient("left")
 			}
 		
 	}
