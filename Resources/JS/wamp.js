@@ -108,7 +108,7 @@ function WAMP(clientType) {
 								$("#eorTrans").empty();
 								pChart = new playerChart("#eorTrans", 875,705);
 								pChart.draw(roundData.players);
-								$("#winner").html(pChart.winner);
+								pChart.drawWinner("#winner");
 							});
 							break;
 						
@@ -126,7 +126,7 @@ function WAMP(clientType) {
 								$("#eorTrans").empty();
 								pChart = new playerChart("#eorTrans", 875,705);
 								pChart.draw(roundData.players);
-								$("#winner").html(pChart.winner);
+								pChart.drawWinner("#winner");
 							});
 							break;
 						
