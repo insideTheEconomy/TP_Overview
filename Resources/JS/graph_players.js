@@ -81,7 +81,7 @@ playerChart.prototype.draw = function(_d){
 	
 	var concat = data.buyer.concat(data.seller);
 	winner = concat.sort(function(a,b){return b.round_surplus - a.round_surplus})[0];
-	this.winnder = winner;
+	self.winner = winner;
 	data[winner.role][winner.position%4].winner = true;
 	
 	
@@ -132,41 +132,27 @@ playerChart.prototype.draw = function(_d){
 			return text;
 		})
 		
-	/*players.selectAll("text").data(function(d){return [ {shape:d.shape, role:d.role},{name:d.name}]}).enter().append("text").attr({
-			class : function(d){
-				var base = "dot "
-				return (d.hasOwnProperty("shape")) ? "dot shape "+d.role+" "+d.shape : "name";
-			},
-			"text-anchor": "middle",
-			dy: function(d){
-				if (d.hasOwnProperty("shape")){
-					switch(d.shape){
-						case "circle":
-							return 10;
-							break;
-						case "pentagon":
-							return null;
-							break;
-						case "triangle":
-							return 5;
-							break;
-						case "square":
-							return 5;
-							break;
-					}
-				} 
-			
-				
-			}
-			
-		}).text(function(d){
-			text = (d.hasOwnProperty("shape")) ? shapes[d.role][d.shape] : d.name;
-			return text;
-		}) */
-	
+}
 
+playerChart.prototype.drawWinner = function(sel){
+	var self = this;
+	var winnerGroup = d3.select(sel).append("svg").attr({width:100,height:100, class:"dot_group"})/*.append("g").attr("class","winnerGroup").attr({
 	
+	});*/
+	console.log("WINNER",self.winner);
+	var role = self.winner.role;
+	var shape = self.winner.shape;
+	winnerGroup.append("polygon").attr({
+		transform: "translate(50,50) scale(2)",
+		points: self.polys[role][shape]	
+	}).attr("class",function(d){return "dot "+role})
 	
+	winnerGroup.append("text").attr({
+		transform: "translate(50,50) scale(2)",
+		"text-anchor": "middle",
+		class: "name",
+		dy: 6
+	}).text(self.winner.name)	
 }
 
 playerChart.prototype.drawAxes = function(){

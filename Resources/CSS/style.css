@@ -86,6 +86,7 @@ h2 {
 }
 .dot_group > .name,
 .axis {
+  fill: white;
   font-family: "label";
   filter: url(#outline);
   font-size: 19px;
