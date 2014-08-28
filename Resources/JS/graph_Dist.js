@@ -23,7 +23,36 @@ var distChart = function(sel, w, h){
 		height: this.dimen.height
 	});
 	
-	this.svg.selectAll('g');
+	
+	this.eq_price;
+	
+	this.dotGroup = this.svg.append("g").attr("class","dots")
+		
+}
+
+distChart.prototype.draw = function(_d){
+	var data = _d;
+	var keys = Object.keys(_d).map(function(d){
+		return +d;
+	})
+		
+		console.log("DISTRIBUTION KEYS", keys);
+
+	
+	
+
+
+	
+	var top = keys.sort(function(a,b){ return data[a].length - data[b].length  })[keys.length-1];
+	this.eq_price = top;
+	data[top].eq_price = true;
+	
+	var minx = keys[0];
+	var maxx = keys[keys.length-1];
+	var maxy = data[top].length+1;
+	
+	var xdom = d3.extent(keys);
+
 	
 	this.setScales = function(){
 		this.scales = {
@@ -31,17 +60,22 @@ var distChart = function(sel, w, h){
 			y: d3.scale.linear()
 		}
 		
+	
+		
 		this.scales.x.range([this.dimen.padding.left, this.dimen.inner.right])
-			.domain([0,20])
+			.domain(xdom)
+		
+		console.log(this.scales.x.domain())
+			
 		this.scales.y.range([this.dimen.inner.bottom, this.dimen.padding.top])
-			.domain([0,20])
+			.domain([0,maxy])
 		
 	}
 	
 	this.setAxes = function(){
 		this.axes=	{
-				x: d3.svg.axis().scale(this.scales.x),
-				y : d3.svg.axis().scale(this.scales.y).orient("left")
+				x: d3.svg.axis().tickFormat(function(d){ return(d%1==0) ? d : null  }).scale(this.scales.x),
+				y : d3.svg.axis().tickFormat(function(d){ return(d%1==0) ? d : null  }).scale(this.scales.y).orient("left")
 			}
 		
 	}
@@ -49,21 +83,22 @@ var distChart = function(sel, w, h){
 	this.setScales();		this.setAxes();
 	this.drawAxes();
 	
-	this.dotGroup = this.svg.append("g").attr("class","dots")
-		
-}
-
-distChart.prototype.draw = function(_d){
-	console.log("DRAW DIST DOTS!",_d);
-	var data = _d;
-
-
-	var keys = Object.keys(_d);
-	var sorted = [];
-	var top = keys.sort(function(a,b){ return data[a].length - data[b].length  })[keys.length-1]
-	data[top].eq_price = true;
 	
-	console.log("DISTRIBUTION KEYS", keys);
+	
+	console.log("DRAW DIST DOTS!",_d);
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 		function drawDots(_selection){
 			_selection.attr({cx: function(d,i){return self.scales.x(+d)}})
@@ -89,16 +124,17 @@ distChart.prototype.draw = function(_d){
 }
 
 distChart.prototype.drawAxes = function(){
+	this.svg.selectAll(".axis").remove();
 	this.svg.append("g")
 	  .attr("class", "axis x")
 	  .append("g")
-	    .attr("transform", "translate(0,"+self.dimen.inner.bottom+ ")")
+	    .attr("transform", "translate(0,"+(self.dimen.inner.bottom+20)+ ")")
 	    .call(this.axes.x);
 	
 		this.svg.append("g")
 		  .attr("class", "axis y")
 		  .append("g")
-		    .attr("transform", "translate("+self.dimen.padding.left+ ",0)")
+		    .attr("transform", "translate("+(self.dimen.padding.left-20)+ ",0)")
 		    .call(this.axes.y)
 }
 
