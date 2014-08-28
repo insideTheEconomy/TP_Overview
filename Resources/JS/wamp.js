@@ -117,6 +117,7 @@ function WAMP(clientType) {
 							loadScreen("shared_1.html", function() {
 								$("#trans").empty();
 								trans = new transactionChart("#trans", 875,645);
+								$("#eqprice").html(trans.eq_price);
 							});
 							break;
 						

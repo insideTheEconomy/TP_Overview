@@ -1,6 +1,6 @@
 var transactionChart = function(sel, w, h){
 	self = this;
-	this.polys = polyBuilder(18);
+	this.polys = polyBuilder(18, true);
 	this.transactions = [];
 	this.dimen = {
 		padding: {
