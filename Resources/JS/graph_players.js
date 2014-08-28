@@ -1,5 +1,6 @@
 var playerChart = function(sel, w, h){
 	self = this;
+	this.polys = polyBuilder(20, false);
 	this.winner;
 	this.dimen = {
 		padding: {
@@ -112,10 +113,26 @@ playerChart.prototype.draw = function(_d){
 		})
 		
 		d3.select(".winner").append("circle").attr({
-			cx: 0, cy: -7, r: 25, class: "winner_circle"
+			cx: 0, r: 25, class: "winner_circle"
 		})
 		
-	players.selectAll("text").data(function(d){return [ {shape:d.shape, role:d.role},{name:d.name}]}).enter().append("text").attr({
+		players.append("polygon").attr({
+			points: function(d){
+				console.log("PLAYER",d);
+				return self.polys[d.role][d.shape]
+				}
+		}).attr("class",function(d){return "dot "+d.role})
+		
+		players.append("text").attr({
+			"text-anchor": "middle",
+			class: "name",
+			dy: 6
+		}).text(function(d){
+			text = d.name;
+			return text;
+		})
+		
+	/*players.selectAll("text").data(function(d){return [ {shape:d.shape, role:d.role},{name:d.name}]}).enter().append("text").attr({
 			class : function(d){
 				var base = "dot "
 				return (d.hasOwnProperty("shape")) ? "dot shape "+d.role+" "+d.shape : "name";
@@ -145,7 +162,7 @@ playerChart.prototype.draw = function(_d){
 		}).text(function(d){
 			text = (d.hasOwnProperty("shape")) ? shapes[d.role][d.shape] : d.name;
 			return text;
-		})
+		}) */
 	
 
 	
