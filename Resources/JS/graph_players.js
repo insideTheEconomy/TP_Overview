@@ -163,14 +163,26 @@ playerChart.prototype.drawAxes = function(){
 	this.svg.append("g")
 	  .attr("class", "axis x")
 	  .append("g")
-	    .attr("transform", "translate(0,"+(self.dimen.inner.bottom+10)+ ")")
+	    .attr("transform", "translate(0,"+(self.dimen.inner.bottom+25)+ ")")
 	    .call(this.axes.x);
 	
-		this.svg.append("g")
-		  .attr("class", "axis y")
-		  .append("g")
-		    .attr("transform", "translate("+(self.dimen.padding.left-20)+ ",0)")
-		    .call(this.axes.y)
+	this.svg.append("g")
+	  .attr("class", "axis y")
+	  .append("g")
+	    .attr("transform", "translate("+(self.dimen.padding.left-25)+ ",0)")
+	    .call(this.axes.y)
+	
+	
+	this.svg.append("text").attr("class","axis label").text("Number of transactions this round").attr({
+		transform: "translate("+this.dimen.width/2+", "+(this.dimen.inner.bottom+70)+")",
+		"text-anchor": "middle",
+	});
+	
+	this.svg.append("text").attr("class","axis label").text("Money earned this round").attr({
+		transform: "translate("+(this.dimen.padding.right-50)+", "+(this.dimen.height/2)+") rotate(-90)",
+		"text-anchor": "middle",
+	});
+
 }
 
 
