@@ -32,6 +32,14 @@ function WAMP(clientType) {
 				}, function(error) {
 					//console.log("subscription failed", error);
 				});
+				
+			session.subscribe('pit.pub.players', self.callbacks.storePlayers).then(
+				function(subscription) {
+					// console.log("subscription successfull", subscription);
+					currentSubscription = subscription;
+				}, function(error) {
+					//console.log("subscription failed", error);
+				});
 
 
 			// Subscribe to a clock
@@ -118,6 +126,11 @@ function WAMP(clientType) {
 								$("#trans").empty();
 								trans = new transactionChart("#trans", 875,645);
 								$("#eqprice").html(trans.eq_price);
+								
+								$("#status").empty();
+								pChart = new playerStatusChart("#status", 830,390);
+								//pChart.drawPlayers(roundData.players);
+								//setInterval(push,1000);
 							});
 							break;
 						
@@ -137,6 +150,12 @@ function WAMP(clientType) {
 								$("#dist").empty();
 								dist = new distChart("#dist", 875,840);
 								dist.draw(roundData.transactions.distribution);
+							});
+							break;
+							
+						case "World News":
+							loadScreen("shared_news.html", function() {
+								
 							});
 							break;
 						
@@ -175,3 +194,10 @@ function storeRound(args, kwargs, details) {
 	console.log("storeRound(), roundData: ", kwargs);
 	roundData = kwargs;
 }
+
+var curPlayers;
+
+function storePlayers(args, kwargs, details) {
+	curPlayers = kwargs;
+}
+
