@@ -36,13 +36,9 @@ try{
 	settings = require(homeDir+config);
 	console.log("Using config.json Settings: ", settings);
 	
-	role = settings.role;
-	opponent = settings.opponent;
-	position = settings.position;
-	ai = settings.ai;
+
 	url = settings.url;
 	curScreen = settings.curScreen;
-	name = "null";
 	phase = 0;
 	goKiosk = settings.kiosk;
 	hideMouse = settings.hideMouse;
