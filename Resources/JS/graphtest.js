@@ -47,10 +47,10 @@ function connect(host){
 	
 	//trans = new transactionChart("#trans", 875,645);
 	//dist = new distChart("#trans", 825,665);
-	pChart = new playerChart("#trans", 825,665);
+	pChart = new playerStatusChart("#trans", 825,665);
 
-	pChart.draw(players);
-	pChart.drawWinner(".qt");
+	pChart.drawPlayers(players);
+//	pChart.drawWinner(".qt");
 	connection = new autobahn.Connection({
 		url: 'ws://'+host+':8080/ws',
 		realm: 'tradingpit'
@@ -72,10 +72,12 @@ function connect(host){
 			
 			}); 
 			sess.subscribe("pit.pub.transaction", function(a,d){
-				//console.log("TRANSACTIONS: ",d);
+			//	console.log("TRANSACTIONS: ",d);
 			//	trans.push(d);
 				//dist.draw(d.distribution);
 				//console.log(d.distribution);
+				//pChart.transaction(d);
+				pChart.push(d);
 			}); 
 	}
 

@@ -49,8 +49,11 @@
 }
 body {
   overflow: hidden;
-  width: 1024px;
-  height: 768px;
+  /*width: 1024px;
+	height: 768px;*/
+
+  width: 1920;
+  height: 1080;
   margin: 0px !important;
   background-image: url('../IMAGES/BG.jpg');
 }
@@ -108,6 +111,9 @@ h2 {
   stroke-width: 3px;
   stroke: #7ac441;
 }
+.dot.seller.filled {
+  fill: rgba(0, 0, 0, 0.8);
+}
 .dot.eq_price {
   fill: #00ff00;
 }
@@ -141,4 +147,213 @@ h2 {
 }
 polygon {
   stroke-linejoin: round;
+}
+.chord {
+  fill: none;
+  stroke: #ad1aac;
+}
+#news_bg {
+  position: fixed;
+  top: 0px;
+  width: 1920px;
+  height: 1080px;
+  background-color: blue;
+  z-index: -20;
+}
+#flashContent {
+  position: fixed;
+  top: 730px;
+  z-index: 10;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+.news_block {
+  width: 100%;
+  height: 836px;
+}
+.barWrap {
+  width: 100%;
+  margin-left: 0px;
+}
+.barWrap.top {
+  -webkit-transition: margin-left 0.5s ease-in;
+}
+.barWrap.mid {
+  -webkit-transition: margin-left 0.7s ease-in;
+}
+.barWrap.bottom {
+  -webkit-transition: margin-left 1s ease-in;
+}
+.barWrap.inactive {
+  margin-left: -100%;
+}
+.barWrap.inactive.bottom {
+  margin-left: 100%;
+}
+.news_bar {
+  border-top: 2px solid rgba(255, 255, 255, 0.5);
+  background-color: blue;
+  z-index: 20;
+  display: inline-block;
+  /*	float:left; */
+
+}
+.news_bar.top {
+  width: 1075px;
+  background-color: #cacaca;
+  height: 54px;
+}
+.news_bar.top.flag {
+  /*	margin-top:53px;*/
+
+  background-color: rgba(0, 0, 0, 0);
+  content: " ";
+  width: 0;
+  height: 0;
+  border-top: 54px solid transparent;
+  border-bottom: 0px solid transparent;
+  border-left: 54px solid #cacaca;
+}
+.news_bar.mid {
+  background-color: rgba(16, 6, 159, 0.5);
+  width: 1730px;
+  height: 108px;
+}
+.news_bar.mid h1 {
+  text-transform: uppercase;
+  color: white;
+  font-size: 7em;
+  width: auto;
+  font-family: title;
+  margin-top: .15em;
+  float: left;
+  margin-left: 350px;
+  line-height: 108px;
+}
+.news_bar.mid.flag {
+  background-color: rgba(0, 0, 0, 0);
+  content: " ";
+  width: 0;
+  height: 0;
+  border-top: 108px solid transparent;
+  border-bottom: 0px solid transparent;
+  border-left: 108px solid rgba(16, 6, 159, 0.5);
+}
+.news_bar.bottom {
+  height: 37px;
+  width: 1920px;
+  background-color: #cacaca;
+}
+.news_bar.bottom p {
+  line-height: 37px;
+  font-size: 35px;
+  color: black;
+  font-family: label;
+}
+#newswrapper {
+  width: 1920px;
+  height: 1080px;
+}
+.news_block {
+  opacity: 1;
+  -webkit-transition: opacity 1.5s ease-in;
+  padding: 0;
+  margin: 0;
+}
+.news_block.inactive {
+  opacity: 0;
+}
+.news_text {
+  text-transform: uppercase;
+  color: white;
+  font-size: 7em;
+  width: auto;
+  font-family: title;
+}
+.news_column {
+  box-sizing: border-box;
+  padding: 40px;
+  height: 100%;
+  display: inline-block;
+}
+.news_column.right {
+  padding-right: 0;
+  padding-left: 0;
+  padding-bottom: 0;
+  margin: 0;
+  float: right;
+  width: 750px;
+}
+.news_column.left {
+  float: left;
+  width: 58%;
+}
+.news_column.left img {
+  box-shadow: 8px 12px 22px black;
+}
+#news_region,
+#news_description {
+  width: 100%;
+  display: block;
+}
+#news_box {
+  background-image: url("../IMAGES/news_box.png");
+  margin: 0;
+  padding: 0;
+  width: 750px;
+  height: 788px;
+  background-color: rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 0 4px 3px rgba(255, 255, 255, 0.5);
+}
+#news_box h1,
+#news_box h2,
+#news_box h3 {
+  text-shadow: none;
+  margin: 0;
+  padding: 0;
+  color: white;
+  position: relative;
+  padding-left: 33px;
+}
+#news_box h1 {
+  text-transform: uppercase;
+  color: white;
+  font-size: 7em;
+  width: auto;
+  font-family: title;
+  line-height: .8em;
+  padding-top: .3em;
+  font-size: 3.5em;
+  text-shadow: 0 0 4px #f0c135;
+}
+#news_box h2 {
+  text-transform: uppercase;
+  color: white;
+  font-size: 7em;
+  width: auto;
+  font-family: title;
+  color: #06023d;
+  font-size: 5.5em;
+  background-color: rgba(202, 202, 202, 0.66);
+  padding-top: .25em;
+  line-height: .7em;
+  text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.5);
+  box-shadow: inset 0 0 4px 2px white;
+  border-bottom: 2px solid #10069f;
+  outline-offset: -15px;
+}
+#news_box h3 {
+  text-transform: uppercase;
+  color: white;
+  font-size: 7em;
+  width: auto;
+  font-family: title;
+  margin-top: .5em;
+  line-height: .9em;
+  text-shadow: 4px 5px 2px black;
+}
+.newsborder {
+  box-shadow: inset 5px -20px 30px rgba(0, 0, 0, 0.8);
 }

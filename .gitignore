@@ -1,7 +1,9 @@
 Resources/cache/
 Resources/node_modules/
 Resources/webkitbuilds/
-
+*.ogv
+*.mov
+*.swf
 *-ck.js
 
 Resources/JS/selectors-ck.js
