@@ -112,7 +112,7 @@ h2 {
   stroke: #7ac441;
 }
 .dot.seller.filled {
-  fill: rgba(0, 0, 0, 0.8);
+  fill: black ;
 }
 .dot.eq_price {
   fill: #00ff00;
