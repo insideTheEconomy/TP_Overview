@@ -32,7 +32,7 @@ var playerStatusChart = function(sel, w, h){
 
 	this.position2point = function(v){
 	    r1 = self.dimen.inner.width/2;
-	    r2 = self.dimen.inner.height/2;
+	    r2 = self.dimen.inner.height*1.25;
 		
 		
 	    return {x:Math.cos(self.circScale(v))*r1, y:Math.sin(self.circScale(v))*r2}
@@ -57,8 +57,8 @@ var playerStatusChart = function(sel, w, h){
 
 	
 	this.players;
-	this.chordGroup = this.svg.append("g").attr("class","chords").attr("transform","translate("+self.dimen.width/2+","+self.dimen.height/2+")");
-	this.dots = this.svg.append("g").attr("class","dots").attr("transform","translate("+self.dimen.width/2+","+self.dimen.height/2+")");
+	this.chordGroup = this.svg.append("g").attr("class","chords").attr("transform","translate("+self.dimen.width/2+","+(self.dimen.height/3-20)+")");
+	this.dots = this.svg.append("g").attr("class","dots").attr("transform","translate("+self.dimen.width/2+","+(self.dimen.height/3-20)+")");
 	
 	this.setup();
 	this.drawArcs();
@@ -115,7 +115,7 @@ playerStatusChart.prototype.drawArcs = function(){
 		}).attr("class","chord").attr("id",function(d){
 			return "b_"+d.buyer+"-s_"+d.seller
 		})
-		.attr("stroke-width",function(d){return 1});
+		.attr("stroke-width",function(d){return 0});
 }
 
 playerStatusChart.prototype.reDraw = function(_t){
@@ -135,16 +135,42 @@ playerStatusChart.prototype.push = function(t){
 	var pS = t.seller.position-4;
 	console.log("pushing", pB, pS);
 	
+	function translateAlong(path) {
+	  var l = path.getTotalLength();
+	  return function(d, i, a) {
+	    return function(t) {
+	      var p = path.getPointAtLength(t * l);
+	      return "translate(" + p.x + "," + p.y + ")";
+	    };
+	  };
+	}
+	
+	
+	
 	if(this.matrix[pB][pS]){
+		
 		this.matrix[pB][pS].value += 1;
 		this.reDraw();
 		var chord_id = "#b_"+t.buyer.position+"-s_"+t.seller.position;
-		console.log(d3.selectAll(chord_id));
-
-		this.chordGroup.append("circle").attr("r","10").append("animateMotion").attr({
+		var circ_id = "b_"+t.buyer.position+"-s_"+t.seller.position;
+		var chordPath = this.chordGroup.select(chord_id);
+		
+	
+			
+		this.chordGroup.append("image").attr("xlink:href","./IMAGES/wheat.svg").attr({
+			width: "50px",	height: "50px", x:"-25px", y:"-25px"
+		}).attr("class", circ_id+" wheat")
+			.transition().ease("linear")
+			      .duration(1000)
+			      .attrTween("transform", translateAlong(chordPath.node()))
+			      .each("end" , function(){
+				d3.select("."+circ_id).remove();
+			}); 
+		
+/*		this.chordGroup.append("circle").attr("r","10").append("animateMotion").attr({
 			"dur":"1s", "repeatCount":"indefinite"
-		}).append("mpath").attr("xlink:href",chord_id)
-	}
+		}).append("mpath").attr("xlink:href",chord_id)*/
+	} 
 
 }
 

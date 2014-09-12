@@ -35,6 +35,8 @@ function makeTransactions(d){
 players.buyer.forEach(makeTransactions);
 players.seller.forEach(makeTransactions);
 
+var transactions = '[{"buyer":{"position":0,"shape":"circle","role":2,"name":"SLH","id":5063031920437114},"price":6,"seller":{"position":7,"shape":"triangle","role":4,"name":"JDS","id":146336874448735},"time":"2014-08-21T17:11:10.493Z"},{"buyer":{"position":2,"shape":"circle","role":1,"name":"SLH","id":5063031920437114},"price":8,"seller":{"position":5,"shape":"triangle","role":6,"name":"JDS","id":146336874448735},"time":"2014-08-21T17:11:14.691Z"},{"buyer":{"position":2,"shape":"square","role":1,"name":"WRN","id":349404973523761},"price":5,"seller":{"position":7,"shape":"triangle","role":4,"name":"JDS","id":146336874448735},"time":"2014-08-21T17:11:15.613Z"},{"buyer":{"position":0,"shape":"circle","role":1,"name":"SLH","id":5063031920437114},"price":6,"seller":{"position":7,"shape":"triangle","role":7,"name":"JDS","id":146336874448735},"time":"2014-08-21T17:11:19.162Z"},{"buyer":{"position":1,"shape":"square","role":1,"name":"WRN","id":349404973523761},"price":5,"seller":{"position":6,"shape":"triangle","role":5,"name":"JDS","id":146336874448735},"time":"2014-08-21T17:11:19.608Z"},{"buyer":{"position":1,"shape":"circle","role":2,"name":"SLH","id":5063031920437114},"price":5,"seller":{"position":7,"shape":"triangle","role":6,"name":"JDS","id":146336874448735},"time":"2014-08-21T17:11:20.323Z"},{"buyer":{"position":2,"shape":"circle","role":0,"name":"SLH","id":5063031920437114},"price":6,"seller":{"position":5,"shape":"triangle","role":4,"name":"JDS","id":146336874448735},"time":"2014-08-21T17:11:25.067Z"},{"buyer":{"position":2,"shape":"circle","role":0,"name":"SLH","id":5063031920437114},"price":5,"seller":{"position":6,"shape":"triangle","role":7,"name":"JDS","id":146336874448735},"time":"2014-08-21T17:11:28.515Z"},{"buyer":{"position":2,"shape":"square","role":3,"name":"WRN","id":349404973523761},"price":5,"seller":{"position":7,"shape":"triangle","role":6,"name":"JDS","id":146336874448735},"time":"2014-08-21T17:11:29.744Z"},{"buyer":{"position":1,"shape":"square","role":1,"name":"WRN","id":349404973523761},"price":9,"seller":{"position":4,"shape":"square","role":5,"name":"RAY","id":1919936511018012},"time":"2014-08-21T17:11:30.870Z"},{"buyer":{"position":1,"shape":"square","role":2,"name":"WRN","id":349404973523761},"price":3,"seller":{"position":6,"shape":"triangle","role":7,"name":"JDS","id":146336874448735},"time":"2014-08-21T17:11:32.259Z"},{"buyer":{"position":3,"shape":"circle","role":1,"name":"SLH","id":5063031920437114},"price":9,"seller":{"position":6,"shape":"triangle","role":5,"name":"JDS","id":146336874448735},"time":"2014-08-21T17:11:34.104Z"},{"buyer":{"position":3,"shape":"circle","role":1,"name":"SLH","id":5063031920437114},"price":7,"seller":{"position":7,"shape":"triangle","role":6,"name":"JDS","id":146336874448735},"time":"2014-08-21T17:11:38.805Z"},{"buyer":{"position":1,"shape":"square","role":2,"name":"WRN","id":349404973523761},"price":3,"seller":{"position":7,"shape":"triangle","role":5,"name":"JDS","id":146336874448735},"time":"2014-08-21T17:11:40.257Z"},{"buyer":{"position":0,"shape":"square","role":3,"name":"WRN","id":349404973523761},"price":10,"seller":{"position":7,"shape":"square","role":7,"name":"RAY","id":1919936511018012},"time":"2014-08-21T17:11:40.271Z"},{"buyer":{"position":3,"shape":"circle","role":2,"name":"SLH","id":5063031920437114},"price":6,"seller":{"position":5,"shape":"triangle","role":5,"name":"JDS","id":146336874448735},"time":"2014-08-21T17:11:43.567Z"},{"buyer":{"position":0,"shape":"circle","role":1,"name":"SLH","id":5063031920437114},"price":9,"seller":{"position":4,"shape":"square","role":6,"name":"RAY","id":1919936511018012},"time":"2014-08-21T17:11:47.037Z"},{"buyer":{"position":0,"shape":"circle","role":3,"name":"SLH","id":5063031920437114},"price":6,"seller":{"position":5,"shape":"triangle","role":6,"name":"JDS","id":146336874448735},"time":"2014-08-21T17:11:55.199Z"},{"buyer":{"position":2,"shape":"circle","role":1,"name":"SLH","id":5063031920437114},"price":9,"seller":{"position":4,"shape":"square","role":4,"name":"RAY","id":1919936511018012},"time":"2014-08-21T17:11:59.046Z"},{"buyer":{"position":0,"shape":"circle","role":2,"name":"SLH","id":5063031920437114},"price":6,"seller":{"position":7,"shape":"triangle","role":7,"name":"JDS","id":146336874448735},"time":"2014-08-21T17:12:01.298Z"},{"buyer":{"position":3,"shape":"circle","role":1,"name":"SLH","id":5063031920437114},"price":10,"seller":{"position":5,"shape":"square","role":4,"name":"RAY","id":1919936511018012},"time":"2014-08-21T17:12:01.794Z"}]';
+transactions = JSON.parse(transactions);
 
 function connect(host){
 	
@@ -47,9 +49,17 @@ function connect(host){
 	
 	//trans = new transactionChart("#trans", 875,645);
 	//dist = new distChart("#trans", 825,665);
-	pChart = new playerStatusChart("#trans", 825,665);
+	pChart = new playerStatusChart("#trans", 830,390);
 
 	pChart.drawPlayers(players);
+	setInterval(push,1000);
+	var ti = 0;
+	
+	function push(){
+		pChart.push(transactions[ti])
+		ti = (ti == transactions.length-1) ? 0 : ti+1;
+	}
+	
 //	pChart.drawWinner(".qt");
 	connection = new autobahn.Connection({
 		url: 'ws://'+host+':8080/ws',
@@ -57,7 +67,7 @@ function connect(host){
 	});
 
 	// Set up 'onopen' handler
-	connection.onopen = function(session) {
+/*	connection.onopen = function(session) {
 		console.log("connected to wamp server");
 		sess = session;
 		var currentSubscription = null;
@@ -79,6 +89,6 @@ function connect(host){
 				//pChart.transaction(d);
 				pChart.push(d);
 			}); 
-	}
+	}*/
 
 }

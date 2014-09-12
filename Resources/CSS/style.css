@@ -151,6 +151,10 @@ polygon {
 .chord {
   fill: none;
   stroke: #ad1aac;
+  filter: url(#outline);
+}
+.wheat {
+  filter: url("#glowie");
 }
 #news_bg {
   position: fixed;
