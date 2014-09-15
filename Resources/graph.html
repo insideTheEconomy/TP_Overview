@@ -40,7 +40,15 @@
 	<body>
 		
 		<svg height="0">
-	
+			<filter id="outline_selected">
+			      <feMorphology result="offset" in="SourceGraphic" operator="dilate" radius="1"/>
+			      <feColorMatrix result="drop" in="offset" type="matrix"
+			            values="0 0 0 0 0
+			                    0 0 0 0 0
+			                    0 0 0 0 0
+			                    0 0 1 1 0" />
+			      <feBlend in="SourceGraphic" in2="drop" mode="lighten" />
+			   </filter>
 
 
 			<filter id="dot_glow">

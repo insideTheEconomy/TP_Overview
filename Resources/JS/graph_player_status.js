@@ -1,6 +1,6 @@
 var playerStatusChart = function(sel, w, h){
 	self = this;
-	this.polys = polyBuilder(20, false);
+	this.polys = polyBuilder(40, false);
 	this.winner;
 	this.dimen = {
 		padding: {
@@ -88,8 +88,19 @@ playerStatusChart.prototype.setup = function(){
 }
 
 playerStatusChart.prototype.drawPlayers = function(_players){
+	
+	
+	
 	this.teams = [_players.seller, _players.buyer];
 	this.players = _players.buyer.concat(_players.seller);
+	var AIs = this.players.filter(function(d){
+		if(!d.meat){
+			d.point = self.position2point(d.position);
+		}
+		return !d.meat;
+		
+		})
+	console.log("AIS",AIs)
 	//this.drawArcs();
 	var playerGroups = this.dots.selectAll("g").data(this.players).enter().append("g")
 		.attr({
@@ -103,6 +114,12 @@ playerStatusChart.prototype.drawPlayers = function(_players){
 			return self.polys[d.role][d.shape]
 			}
 	}).attr("class",function(d){return "dot filled "+d.role})	
+	
+	this.dots.selectAll("image").data(AIs).enter().append("image").attr("xlink:href","./IMAGES/ai.svg")
+		.attr({
+			width: "50px", height: "50px", x:"-25px", y:"-25px",
+			transform: function(d){return "translate(" + d.point.x + "," + d.point.y + ")";}
+		})
 }
 
 playerStatusChart.prototype.drawArcs = function(){
@@ -114,8 +131,7 @@ playerStatusChart.prototype.drawArcs = function(){
 			return self.arcFunction(d.points, d.height)
 		}).attr("class","chord").attr("id",function(d){
 			return "b_"+d.buyer+"-s_"+d.seller
-		})
-		.attr("stroke-width",function(d){return 0});
+		}).attr("stroke-width",function(d){return 0});
 }
 
 playerStatusChart.prototype.reDraw = function(_t){
@@ -124,7 +140,7 @@ playerStatusChart.prototype.reDraw = function(_t){
 	this.chords.selectAll("path").data(function(d){
 			var _d = d;
 			return d
-		}).attr("stroke-width",function(d){return d.value});
+		}).attr("stroke-width",function(d){return Math.min(d.value*d.value,40)});
 	
 	
 

@@ -151,7 +151,8 @@ polygon {
 .chord {
   fill: none;
   stroke: #ad1aac;
-  filter: url(#outline);
+  stroke-opacity: 0.2;
+  filter: url("#outline_selected");
 }
 .wheat {
   filter: url("#glowie");

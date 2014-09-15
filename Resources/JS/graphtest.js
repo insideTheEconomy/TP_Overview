@@ -31,6 +31,7 @@ var pstring = '{"buyer":[{"name":"YY","cardURI":"pit.pub.2978108324115046","offe
 var players = JSON.parse(pstring);
 function makeTransactions(d){
 	d.transactions = ~~(Math.random()*10+1);
+	d.meat = [false,true,false,false][~~(Math.random()*4)];
 }
 players.buyer.forEach(makeTransactions);
 players.seller.forEach(makeTransactions);
@@ -52,7 +53,7 @@ function connect(host){
 	pChart = new playerStatusChart("#trans", 830,390);
 
 	pChart.drawPlayers(players);
-	setInterval(push,1000);
+	setInterval(push,200);
 	var ti = 0;
 	
 	function push(){
