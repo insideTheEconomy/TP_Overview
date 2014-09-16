@@ -12,6 +12,17 @@
 	      </feMerge>
 	</filter>
 	<defs>
+		
+		<filter id="outline_selected">
+		      <feMorphology result="offset" in="SourceGraphic" operator="dilate" radius="1"/>
+		      <feColorMatrix result="drop" in="offset" type="matrix"
+		            values="0 0 0 0 0
+		                    0 0 0 0 0
+		                    0 0 0 0 0
+		                    0 0 1 1 0" />
+		      <feBlend in="SourceGraphic" in2="drop" mode="lighten" />
+		   </filter>
+		
 	    <filter id="glowie" x="-150%" y="-150%" height="300%" width="300%">
 	    <feGaussianBlur in="SourceAlpha" stdDeviation="6" result="blurred"></feGaussianBlur>
 	<feGaussianBlur in="SourceAlpha" stdDeviation="2" result="blackened"></feGaussianBlur>
