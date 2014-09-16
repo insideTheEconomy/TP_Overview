@@ -98,7 +98,7 @@ transactionChart.prototype.draw = function(_d){
 			})
 			.text(function(d){return shapes[d.role][d.shape]})
 	}
-	console.log("DRAW TRANSACTION DOTS!",_d);
+//	console.log("DRAW TRANSACTION DOTS!",_d);
 		
 	if(_d.length > self.scales.x.domain()[1]){
 		self.scales.x.domain([0,_d.length]) 
@@ -116,7 +116,7 @@ transactionChart.prototype.draw = function(_d){
 
 transactionChart.prototype.push = function(_d){
 	var self = this;
-	console.log("TRANSACTION",_d);
+	//console.log("TRANSACTION",_d);
 	this.transactions.push(_d);
 	var shapes = this.shapes;
 	var drawDots = function(_dots){
@@ -132,7 +132,7 @@ transactionChart.prototype.push = function(_d){
 				class: function(d,i){return ["dot seller","dot buyer"][i]},
 				"points":function(d){
 					var pts = self.polys[d.role][d.shape]
-					console.log(pts);
+					//console.log(pts);
 					 return pts }
 			})
 	}

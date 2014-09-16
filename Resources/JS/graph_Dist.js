@@ -37,7 +37,7 @@ distChart.prototype.draw = function(_d){
 		return +d;
 	})
 		
-		console.log("DISTRIBUTION KEYS", keys);
+	//console.log("DISTRIBUTION KEYS", keys);
 
 	
 	
@@ -66,7 +66,7 @@ distChart.prototype.draw = function(_d){
 		this.scales.x.range([this.dimen.padding.left, this.dimen.inner.right])
 			.domain(xdom)
 		
-		console.log(this.scales.x.domain())
+		//console.log(this.scales.x.domain())
 			
 		this.scales.y.range([this.dimen.inner.bottom, this.dimen.padding.top])
 			.domain([0,maxy])
@@ -86,7 +86,7 @@ distChart.prototype.draw = function(_d){
 	
 	
 	
-	console.log("DRAW DIST DOTS!",_d);
+	console.log("DRAWing DISTRIBUTIOM",_d);
 
 	
 	

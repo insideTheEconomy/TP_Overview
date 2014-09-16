@@ -41,7 +41,7 @@ var playerStatusChart = function(sel, w, h){
 	this.arcScale = d3.scale.linear().range([this.dimen.height/4,-(this.dimen.height/4)]).domain([1,7])
 	
 	this.arcFunction = function(_pts, _h){
-		console.log("H",_h)
+		//console.log("H",_h)
 	    var d = "M";
 	    d+= (_pts[0].x).toString();
 	    d+=","
@@ -100,7 +100,7 @@ playerStatusChart.prototype.drawPlayers = function(_players){
 		return !d.meat;
 		
 		})
-	console.log("AIS",AIs)
+	//console.log("AIS",AIs)
 	//this.drawArcs();
 	var playerGroups = this.dots.selectAll("g").data(this.players).enter().append("g")
 		.attr({
@@ -110,7 +110,7 @@ playerStatusChart.prototype.drawPlayers = function(_players){
 		});
 	playerGroups.append("polygon").attr({
 		points: function(d){
-			console.log("PLAYER",d);
+			//console.log("PLAYER",d);
 			return self.polys[d.role][d.shape]
 			}
 	}).attr("class",function(d){return "dot filled "+d.role})	
@@ -151,7 +151,7 @@ playerStatusChart.prototype.push = function(t){
 	var self = this;
 	var pB = t.buyer.position;
 	var pS = t.seller.position-4;
-	console.log("pushing", pB, pS);
+	//console.log("pushing", pB, pS);
 	
 	function translateAlong(path) {
 	  var l = path.getTotalLength();
