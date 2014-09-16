@@ -10,14 +10,14 @@ $(function () {
 		initiated = true;
 	
 
-		child = exec('osascript -e "tell application \"TP_SharedScreen\" to activate"',
+	/*	child = exec('osascript -e "tell application \"TP_SharedScreen\" to activate"',
 		  function (error, stdout, stderr) {
 		    console.log('stdout: ' + stdout);
 		    console.log('stderr: ' + stderr);
 		    if (error !== null) {
 		      console.log('exec error: ' + error);
 		    }
-		});
+		});*/
 	}	
 	
 	//Happens on EVERY restart
