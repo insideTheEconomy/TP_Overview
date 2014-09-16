@@ -40,7 +40,7 @@ function WAMP(clientType) {
 				}, function(error) {
 					//console.log("subscription failed", error);
 				});
-
+ 
 
 			// Subscribe to a clock
 			session.subscribe('pit.pub.clock', self.callbacks.onTick).then(

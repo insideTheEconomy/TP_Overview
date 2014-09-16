@@ -1,5 +1,5 @@
 var transactionChart = function(sel, w, h){
-	self = this;
+	var self = this;
 	this.polys = polyBuilder(18, true);
 	this.transactions = [];
 	this.dimen = {

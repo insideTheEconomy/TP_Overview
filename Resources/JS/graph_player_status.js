@@ -1,5 +1,5 @@
 var playerStatusChart = function(sel, w, h){
-	self = this;
+	var self = this;
 	this.polys = polyBuilder(40, false);
 	this.winner;
 	this.dimen = {

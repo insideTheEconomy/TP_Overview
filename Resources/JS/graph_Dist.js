@@ -1,5 +1,5 @@
 var distChart = function(sel, w, h){
-	self = this;
+	var self = this;
 	this.dimen = {
 		padding: {
 			top: 110,
