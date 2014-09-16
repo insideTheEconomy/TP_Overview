@@ -13,11 +13,13 @@ function WAMP(clientType) {
 	
 		// Set up WAMP connection to router
 		var sess;
-		var connection = new autobahn.Connection({
+		connection = new autobahn.Connection({
 			url: url,
 			realm: 'tradingpit'
 		});
-
+		
+		var success = function(s){console.log("Successful Subscription",s)}
+		var err_callback = function(e){console.log("Subscription Error",e)}
 		// Set up 'onopen' handler
 		connection.onopen = function(session) {
 			self.sess = session;
@@ -25,52 +27,23 @@ function WAMP(clientType) {
 			
 			
 			// Subscribe to phases
-			session.subscribe('pit.pub.phase', self.callbacks.onPhase).then(
-				function(subscription) {
-					// console.log("subscription successfull", subscription);
-					currentSubscription = subscription;
-				}, function(error) {
-					//console.log("subscription failed", error);
-				});
-				
-			session.subscribe('pit.pub.players', self.callbacks.storePlayers).then(
-				function(subscription) {
-					// console.log("subscription successfull", subscription);
-					currentSubscription = subscription;
-				}, function(error) {
-					//console.log("subscription failed", error);
-				});
+			session.subscribe('pit.pub.phase', self.callbacks.onPhase).then(success, err_callback);
+			console.log("PHASE subscribed");
+			session.subscribe('pit.pub.clock', self.callbacks.onTick).then(success, err_callback);
+			session.subscribe('pit.pub.players', storePlayers).then(success, err_callback);
  
 
 			// Subscribe to a clock
-			session.subscribe('pit.pub.clock', self.callbacks.onTick).then(
-			function(subscription) {
-				// console.log("subscription successfull", subscription);
-				currentSubscription = subscription;
-			},
-			function(error) {
-				//console.log("subscription failed", error);
-			});
 			
-			session.subscribe('pit.pub.round', storeRound).then(
-
-		      function(subscription) {
-		         console.log("Round Subscription Successfull!", subscription);
-		         currentSubscription = subscription;
-		      },
-
-		      function(error) {
-		        //console.log("subscription failed", error);
-		      }
-
-		   );
+			
+			session.subscribe('pit.pub.round', storeRound).then(success, err_callback);
 		
 		   session.subscribe("pit.pub.transaction", function(a,d){
 				console.log("TRANSACTION: ",d);
 				if (trans) {
 					trans.push(d);
 				}
-			});
+			}).then(success, err_callback);;
 			
 			/*session.subscribe("pit.pub.transactions", function(a,d){
 				console.log("Distributiion Data: ", d.distribution);

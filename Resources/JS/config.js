@@ -26,15 +26,15 @@ var roundData;
 var trans;
 var pChart;
 var dist;
-
+var connection;
 // --------------------------- //
 
 try{
 	var user = process.env.USER;
 	var homeDir = "/Users/"+user+"/exhibit/";
-	var config = "config.json";
+	var config = "tpoverview.json";
 	settings = require(homeDir+config);
-	console.log("Using config.json Settings: ", settings);
+	console.log("Using tpoverview.json Settings: ", settings);
 	
 
 	url = settings.url;
