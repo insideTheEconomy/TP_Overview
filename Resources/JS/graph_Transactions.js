@@ -81,6 +81,7 @@ var transactionChart = function(sel, w, h){
 
 
 transactionChart.prototype.draw = function(_d){
+	var self = this;
 	var shapes = this.shapes;
 	var drawDots = function(_dots){
 		_dots.attr({
@@ -191,6 +192,7 @@ transactionChart.prototype.push = function(_d){
 
 
 transactionChart.prototype.drawAxes = function(){
+	var self = this;
 	this.xAxis = this.svg.append("g")
 	  .attr("class", "axis x")
 	  .append("g")

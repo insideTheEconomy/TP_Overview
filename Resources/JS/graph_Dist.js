@@ -31,6 +31,7 @@ var distChart = function(sel, w, h){
 }
 
 distChart.prototype.draw = function(_d){
+	var self = this;
 	var data = _d;
 	var keys = Object.keys(_d).map(function(d){
 		return +d;
@@ -124,6 +125,7 @@ distChart.prototype.draw = function(_d){
 }
 
 distChart.prototype.drawAxes = function(){
+	var self = this;
 	this.svg.selectAll(".axis").remove();
 	this.svg.append("g")
 	  .attr("class", "axis x")

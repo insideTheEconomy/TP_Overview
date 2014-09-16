@@ -66,7 +66,7 @@ var playerStatusChart = function(sel, w, h){
 }
 
 playerStatusChart.prototype.setup = function(){
-	
+	var self = this;
 	var h = [50, 20, 0, 100 ];
 	
 	//make a matrix, buyers are rows
@@ -88,7 +88,7 @@ playerStatusChart.prototype.setup = function(){
 }
 
 playerStatusChart.prototype.drawPlayers = function(_players){
-	
+	var self = this;
 	
 	
 	this.teams = [_players.seller, _players.buyer];
@@ -123,6 +123,7 @@ playerStatusChart.prototype.drawPlayers = function(_players){
 }
 
 playerStatusChart.prototype.drawArcs = function(){
+	var self = this;
 	this.chords = this.chordGroup.selectAll("g").data(self.matrix).enter().append("g").attr("class",function(d,i,a){return "seller group"+i});
 	this.chords.selectAll("path").data(function(d){
 			var _d = d;
@@ -135,7 +136,7 @@ playerStatusChart.prototype.drawArcs = function(){
 }
 
 playerStatusChart.prototype.reDraw = function(_t){
-	
+	var self = this;
 	this.chords = this.chordGroup.selectAll("g").data(self.matrix)
 	this.chords.selectAll("path").data(function(d){
 			var _d = d;
@@ -147,6 +148,7 @@ playerStatusChart.prototype.reDraw = function(_t){
 }
 
 playerStatusChart.prototype.push = function(t){
+	var self = this;
 	var pB = t.buyer.position;
 	var pS = t.seller.position-4;
 	console.log("pushing", pB, pS);
@@ -164,7 +166,7 @@ playerStatusChart.prototype.push = function(t){
 	
 	
 	if(this.matrix[pB][pS]){
-		
+		var self = this;
 		this.matrix[pB][pS].value += 1;
 		this.reDraw();
 		var chord_id = "#b_"+t.buyer.position+"-s_"+t.seller.position;

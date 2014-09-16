@@ -160,6 +160,7 @@ playerChart.prototype.drawWinner = function(sel){
 }
 
 playerChart.prototype.drawAxes = function(){
+	var self = this;
 	this.svg.append("g")
 	  .attr("class", "axis x")
 	  .append("g")
