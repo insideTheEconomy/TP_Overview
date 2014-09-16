@@ -3,16 +3,39 @@
 <script type="text/javascript" charset="utf-8" src = "JS/graph_player_status.js"></script>
 
 <svg height="0">
-	<filter id="dot_glow">
-		<feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"/>
-			<feGaussianBlur in="SourceGraphic" stdDeviation="1" result="blur2"/>
-		<feMerge>
-				<feMergeNode in = "blur2"></feMergeNode>
-				<feMergeNode in = "blur"></feMergeNode>
-	      </feMerge>
-	</filter>
+	
 	<defs>
-		
+		<filter id="dot_glow">
+			<feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"/>
+				<feGaussianBlur in="SourceGraphic" stdDeviation="1" result="blur2"/>
+			<feMerge>
+					<feMergeNode in = "blur2"></feMergeNode>
+					<feMergeNode in = "blur"></feMergeNode>
+		      </feMerge>
+		</filter>
+		<filter id="phallic_noodle" >
+		  <desc>Produces a 3D lighting effect.</desc>
+		  <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="blur"/>
+		  <feOffset in="blur" dx="0" dy="2" result="offsetBlur"/>
+		  <feSpecularLighting in="blur" surfaceScale="8" specularConstant=".32" 
+		                      specularExponent="8" lighting-color="#fff" 
+		                      result="specOut">
+		    <fePointLight x="-5000" y="-50000" z="20000"/>
+			<feComponentTransfer>
+			    <feFuncA type="linear" slope="0.2"/>
+			  </feComponentTransfer>
+		  </feSpecularLighting>
+		  <feComposite in="specOut" in2="SourceGraphic" operator="atop" result="specOut"/>
+		  <feComposite in="SourceGraphic" in2="specOut" operator="arithmetic" 
+		               k1="0" k2="1" k3="1" k4="0" result="litPaint"/>
+			<feBlend mode="screen" in2="SourceGraphic" in="specOut"/>
+		  <feMerge>
+			
+						<feMergeNode in="SourceGraphic"/>
+		     			<feMergeNode in="offsetBlur"/>
+			            <feMergeNode in="specOut"/>
+		  </feMerge>
+		</filter>
 		<filter id="outline_selected">
 		      <feMorphology result="offset" in="SourceGraphic" operator="dilate" radius="1"/>
 		      <feColorMatrix result="drop" in="offset" type="matrix"
