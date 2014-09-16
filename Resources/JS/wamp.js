@@ -43,6 +43,9 @@ function WAMP(clientType) {
 				if (trans) {
 					trans.push(d);
 				}
+				if (pChart) {
+					pChart.push(d);
+				}
 			}).then(success, err_callback);;
 			
 			/*session.subscribe("pit.pub.transactions", function(a,d){
@@ -102,7 +105,7 @@ function WAMP(clientType) {
 								
 								$("#status").empty();
 								pChart = new playerStatusChart("#status", 830,390);
-								//pChart.drawPlayers(roundData.players);
+								pChart.drawPlayers(roundData.players);
 								//setInterval(push,1000);
 							});
 							break;
