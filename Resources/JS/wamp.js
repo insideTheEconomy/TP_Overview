@@ -88,11 +88,7 @@ function WAMP(clientType) {
 					
 						case "Setup":
 							phase = 0;
-							loadScreen("shared_2.html", function() {
-								$("#eorTrans").empty();
-								pChart = new playerChart("#eorTrans", 875,705);
-								pChart.draw(roundData.players);
-								pChart.drawWinner("#winner");
+							loadScreen("shared_3.html", function() {
 							});
 							break;
 						
