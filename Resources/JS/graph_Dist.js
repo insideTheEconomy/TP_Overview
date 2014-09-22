@@ -120,6 +120,16 @@ distChart.prototype.draw = function(_d){
 		
 		drawDots(oldDots);
 		drawDots(newDots.attr("opacity",0).attr("cy",self.scales.y(0)));
+		
+		var label = this.dotGroup.append("text").attr({
+			class:"name",
+			y:self.scales.y(data[self.eq_price].length)-33
+		}).selectAll("tspan").data(["\u00A0\u00A0\u00A0 Market","\u25C0\u00A0Clearing","\u00A0\u00A0\u00A0\u00A0Price"])
+			.enter().append("tspan").text(function(d){return d}).attr({
+				dy: 20,
+				x:self.scales.x(self.eq_price)+10
+			
+		})
 	
 	
 }

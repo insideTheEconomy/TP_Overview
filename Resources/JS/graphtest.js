@@ -25,7 +25,8 @@ $(function(){
 	})*/
 
 })
-
+var transStr ='{"_id":{"str":"53f628ac6b61368a4ee586ca"},"distribution":{"1":[{"buyer":{"position":4,"shape":"circle","role":"buyer","name":"SLH","id":5063031920437114},"price":1,"seller":{"position":2,"shape":"triangle","role":"seller","name":"JDS","id":146336874448735},"time":"2014-08-21T17:12:53.848Z"}],"3":[{"buyer":{"position":4,"shape":"circle","role":"buyer","name":"SLH","id":5063031920437114},"price":3,"seller":{"position":2,"shape":"triangle","role":"seller","name":"JDS","id":146336874448735},"time":"2014-08-21T17:12:53.710Z"}],"5":[{"buyer":{"position":4,"shape":"circle","role":"buyer","name":"SLH","id":5063031920437114},"price":5,"seller":{"position":5,"shape":"square","role":"seller","name":"RAY","id":1919936511018012},"time":"2014-08-21T17:12:56.066Z"},{"buyer":{"position":4,"shape":"circle","role":"buyer","name":"SLH","id":5063031920437114},"price":5,"seller":{"position":5,"shape":"square","role":"seller","name":"RAY","id":1919936511018012},"time":"2014-08-21T17:13:16.954Z"}],"6":[{"buyer":{"position":4,"shape":"circle","role":"buyer","name":"SLH","id":5063031920437114},"price":6,"seller":{"position":2,"shape":"triangle","role":"seller","name":"JDS","id":146336874448735},"time":"2014-08-21T17:12:32.893Z"},{"buyer":{"position":4,"shape":"circle","role":"buyer","name":"SLH","id":5063031920437114},"price":6,"seller":{"position":2,"shape":"triangle","role":"seller","name":"JDS","id":146336874448735},"time":"2014-08-21T17:12:36.753Z"},{"buyer":{"position":1,"shape":"square","role":"buyer","name":"WRN","id":349404973523761},"price":6,"seller":{"position":2,"shape":"triangle","role":"seller","name":"JDS","id":146336874448735},"time":"2014-08-21T17:12:46.747Z"},{"buyer":{"position":4,"shape":"circle","role":"buyer","name":"SLH","id":5063031920437114},"price":6,"seller":{"position":5,"shape":"square","role":"seller","name":"RAY","id":1919936511018012},"time":"2014-08-21T17:13:11.249Z"}],"7":[{"buyer":{"position":4,"shape":"circle","role":"buyer","name":"SLH","id":5063031920437114},"price":7,"seller":{"position":5,"shape":"square","role":"seller","name":"RAY","id":1919936511018012},"time":"2014-08-21T17:12:40.706Z"}],"8":[{"buyer":{"position":1,"shape":"square","role":"buyer","name":"WRN","id":349404973523761},"price":8,"seller":{"position":5,"shape":"square","role":"seller","name":"RAY","id":1919936511018012},"time":"2014-08-21T17:12:44.496Z"},{"buyer":{"position":4,"shape":"circle","role":"buyer","name":"SLH","id":5063031920437114},"price":8,"seller":{"position":2,"shape":"triangle","role":"seller","name":"JDS","id":146336874448735},"time":"2014-08-21T17:13:03.215Z"}],"9":[{"buyer":{"position":4,"shape":"circle","role":"buyer","name":"SLH","id":5063031920437114},"price":9,"seller":{"position":2,"shape":"triangle","role":"seller","name":"JDS","id":146336874448735},"time":"2014-08-21T17:13:04.134Z"},{"buyer":{"position":4,"shape":"circle","role":"buyer","name":"SLH","id":5063031920437114},"price":9,"seller":{"position":5,"shape":"square","role":"seller","name":"RAY","id":1919936511018012},"time":"2014-08-21T17:13:06.231Z"},{"buyer":{"position":4,"shape":"circle","role":"buyer","name":"SLH","id":5063031920437114},"price":9,"seller":{"position":5,"shape":"square","role":"seller","name":"RAY","id":1919936511018012},"time":"2014-08-21T17:13:16.432Z"},{"buyer":{"position":4,"shape":"circle","role":"buyer","name":"SLH","id":5063031920437114},"price":9,"seller":{"position":2,"shape":"triangle","role":"seller","name":"JDS","id":146336874448735},"time":"2014-08-21T17:13:16.473Z"}],"10":[{"buyer":{"position":4,"shape":"circle","role":"buyer","name":"SLH","id":5063031920437114},"price":10,"seller":{"position":2,"shape":"triangle","role":"seller","name":"JDS","id":146336874448735},"time":"2014-08-21T17:12:32.616Z"},{"buyer":{"position":4,"shape":"circle","role":"buyer","name":"SLH","id":5063031920437114},"price":10,"seller":{"position":5,"shape":"square","role":"seller","name":"RAY","id":1919936511018012},"time":"2014-08-21T17:13:00.673Z"}]},"transactions":[{"buyer":{"position":4,"shape":"circle","role":"buyer","name":"SLH","id":5063031920437114},"price":10,"seller":{"position":2,"shape":"triangle","role":"seller","name":"JDS","id":146336874448735},"time":"2014-08-21T17:12:32.616Z"},{"buyer":{"position":4,"shape":"circle","role":"buyer","name":"SLH","id":5063031920437114},"price":6,"seller":{"position":2,"shape":"triangle","role":"seller","name":"JDS","id":146336874448735},"time":"2014-08-21T17:12:32.893Z"},{"buyer":{"position":4,"shape":"circle","role":"buyer","name":"SLH","id":5063031920437114},"price":6,"seller":{"position":2,"shape":"triangle","role":"seller","name":"JDS","id":146336874448735},"time":"2014-08-21T17:12:36.753Z"},{"buyer":{"position":4,"shape":"circle","role":"buyer","name":"SLH","id":5063031920437114},"price":7,"seller":{"position":5,"shape":"square","role":"seller","name":"RAY","id":1919936511018012},"time":"2014-08-21T17:12:40.706Z"},{"buyer":{"position":1,"shape":"square","role":"buyer","name":"WRN","id":349404973523761},"price":8,"seller":{"position":5,"shape":"square","role":"seller","name":"RAY","id":1919936511018012},"time":"2014-08-21T17:12:44.496Z"},{"buyer":{"position":1,"shape":"square","role":"buyer","name":"WRN","id":349404973523761},"price":6,"seller":{"position":2,"shape":"triangle","role":"seller","name":"JDS","id":146336874448735},"time":"2014-08-21T17:12:46.747Z"},{"buyer":{"position":4,"shape":"circle","role":"buyer","name":"SLH","id":5063031920437114},"price":3,"seller":{"position":2,"shape":"triangle","role":"seller","name":"JDS","id":146336874448735},"time":"2014-08-21T17:12:53.710Z"},{"buyer":{"position":4,"shape":"circle","role":"buyer","name":"SLH","id":5063031920437114},"price":1,"seller":{"position":2,"shape":"triangle","role":"seller","name":"JDS","id":146336874448735},"time":"2014-08-21T17:12:53.848Z"},{"buyer":{"position":4,"shape":"circle","role":"buyer","name":"SLH","id":5063031920437114},"price":5,"seller":{"position":5,"shape":"square","role":"seller","name":"RAY","id":1919936511018012},"time":"2014-08-21T17:12:56.066Z"},{"buyer":{"position":4,"shape":"circle","role":"buyer","name":"SLH","id":5063031920437114},"price":10,"seller":{"position":5,"shape":"square","role":"seller","name":"RAY","id":1919936511018012},"time":"2014-08-21T17:13:00.673Z"},{"buyer":{"position":4,"shape":"circle","role":"buyer","name":"SLH","id":5063031920437114},"price":8,"seller":{"position":2,"shape":"triangle","role":"seller","name":"JDS","id":146336874448735},"time":"2014-08-21T17:13:03.215Z"},{"buyer":{"position":4,"shape":"circle","role":"buyer","name":"SLH","id":5063031920437114},"price":9,"seller":{"position":2,"shape":"triangle","role":"seller","name":"JDS","id":146336874448735},"time":"2014-08-21T17:13:04.134Z"},{"buyer":{"position":4,"shape":"circle","role":"buyer","name":"SLH","id":5063031920437114},"price":9,"seller":{"position":5,"shape":"square","role":"seller","name":"RAY","id":1919936511018012},"time":"2014-08-21T17:13:06.231Z"},{"buyer":{"position":4,"shape":"circle","role":"buyer","name":"SLH","id":5063031920437114},"price":6,"seller":{"position":5,"shape":"square","role":"seller","name":"RAY","id":1919936511018012},"time":"2014-08-21T17:13:11.249Z"},{"buyer":{"position":4,"shape":"circle","role":"buyer","name":"SLH","id":5063031920437114},"price":9,"seller":{"position":5,"shape":"square","role":"seller","name":"RAY","id":1919936511018012},"time":"2014-08-21T17:13:16.432Z"},{"buyer":{"position":4,"shape":"circle","role":"buyer","name":"SLH","id":5063031920437114},"price":9,"seller":{"position":2,"shape":"triangle","role":"seller","name":"JDS","id":146336874448735},"time":"2014-08-21T17:13:16.473Z"},{"buyer":{"position":4,"shape":"circle","role":"buyer","name":"SLH","id":5063031920437114},"price":5,"seller":{"position":5,"shape":"square","role":"seller","name":"RAY","id":1919936511018012},"time":"2014-08-21T17:13:16.954Z"}],"timestamp":1408641196820}';
+var distData = JSON.parse(transStr).distribution;
 
 var pstring = '{"buyer":[{"name":"YY","cardURI":"pit.pub.2978108324115046","offer":"none","shape":"circle","role":"buyer","transactions":0,"position":0,"round_surplus":13,"reserve":0,"surplus":0,"id":2978108324115046,"meat":"true"},{"name":"BUY","cardURI":"pit.pub.8493243085656114","offer":"none","shape":"square","role":"buyer","transactions":0,"position":1,"round_surplus":6,"reserve":0,"surplus":0,"id":8493243085656114,"meat":"true"},{"name":"POE","cardURI":"pit.pub.2978108324115046","offer":"none","shape":"triangle","role":"buyer","transactions":0,"position":2,"round_surplus":17,"reserve":0,"surplus":0,"id":2978108324115046,"meat":false},{"name":"APE","cardURI":"pit.pub.8493243085656114","offer":"none","shape":"pentagon","role":"buyer","transactions":0,"position":3,"round_surplus":8,"reserve":0,"surplus":0,"id":8493243085656114,"meat":"true"}],"seller":[{"name":"SEL","cardURI":"pit.pub.3828666902752256","offer":"none","shape":"circle","role":"seller","transactions":0,"position":4,"round_surplus":17,"reserve":0,"surplus":0,"id":3828666902752256,"meat":"true"},{"name":"EL","cardURI":"pit.pub.6362857482593107","offer":"none","shape":"square","role":"seller","transactions":0,"position":5,"round_surplus":12,"reserve":0,"surplus":0,"id":6362857482593107,"meat":"true"},{"name":"TRE","cardURI":"pit.pub.3828666902752256","offer":"none","shape":"triangle","role":"seller","transactions":0,"position":6,"round_surplus":18,"reserve":0,"surplus":0,"id":3828666902752256,"meat":"false"},{"name":"PO","cardURI":"pit.pub.6362857482593107","offer":"none","shape":"pentagon","role":"seller","transactions":0,"position":7,"round_surplus":19,"reserve":0,"surplus":0,"id":6362857482593107,"meat":"true"}]}'
 var players = JSON.parse(pstring);
@@ -48,18 +49,21 @@ function connect(host){
 	$("#trans").empty();
 	$("#dist").empty();
 	
-	//trans = new transactionChart("#trans", 875,645);
-	//dist = new distChart("#trans", 825,665);
-	pChart = new playerStatusChart("#trans", 830,390);
-
-	pChart.drawPlayers(players);
-	setInterval(push,200);
+//trans = new transactionChart("#trans", 875,845);
+	dist = new distChart("#trans", 825,665);
+	dist.draw(distData)
+	//pChart = new playerStatusChart("#trans", 830,390);
+	var distribution;
+	//pChart.drawPlayers(players);
+	//setInterval(push,1000);
 	var ti = 0;
 	
 	function push(){
-		pChart.push(transactions[ti])
+		//pChart.push(transactions[ti])
+		trans.push(transactions[ti]);
 		ti = (ti == transactions.length-1) ? 0 : ti+1;
 	}
+	
 	
 //	pChart.drawWinner(".qt");
 	connection = new autobahn.Connection({
@@ -68,7 +72,7 @@ function connect(host){
 	});
 
 	// Set up 'onopen' handler
-/*	connection.onopen = function(session) {
+	connection.onopen = function(session) {
 		console.log("connected to wamp server");
 		sess = session;
 		var currentSubscription = null;
@@ -88,8 +92,9 @@ function connect(host){
 				//dist.draw(d.distribution);
 				//console.log(d.distribution);
 				//pChart.transaction(d);
-				pChart.push(d);
+				//distribution = d.distribution;
+			//	pChart.push(d);
 			}); 
-	}*/
+	}
 
 }

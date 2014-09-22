@@ -10,14 +10,17 @@ var transactionChart = function(sel, w, h){
 			left: 120
 		},
 		
-		width:w,	height:h
+		width:w,	height:h,
+		keyWidth: w, keyHeight: 100,
+		
 	}
-	
+	this.dimen.keyTop= self.dimen.height - self.dimen.keyHeight;
 	this.dimen.inner = {
-		width : this.dimen.width - this.dimen.padding.right - this.dimen.padding.right,
-		height :  this.dimen.height - this.dimen.padding.top - this.dimen.padding.bottom,
-		bottom: this.dimen.height - this.dimen.padding.bottom,
-		right: this.dimen.width - this.dimen.padding.right
+		width : this.dimen.width - this.dimen.padding.right - this.dimen.padding.right ,
+		height :  this.dimen.height - this.dimen.padding.top - this.dimen.padding.bottom - this.dimen.keyHeight,
+		bottom: this.dimen.height - this.dimen.padding.bottom - this.dimen.keyHeight,
+		right: this.dimen.width - this.dimen.padding.right,
+		
 	}
 	
 	this.svg = d3.select("#trans").append("svg").attr({
@@ -74,6 +77,39 @@ var transactionChart = function(sel, w, h){
 	this.drawAxes();
 	
 	this.dotGroup = this.svg.append("g").attr("class","dots")
+	
+	this.key = this.svg.append("g").attr("class","dots")
+		.attr({transform:"translate("+self.dimen.padding.right+","+self.dimen.keyTop+")"});
+		
+	var polyDiameter = 18;
+	var polys2 = polyBuilder(18, false);
+	var lineHeight = (polyDiameter*2)+20;
+	var polySpace = (polyDiameter*2)+10;
+	var keyData = [["circle", "square", "triangle", "pentagon"],["circle", "square", "triangle", "pentagon"]];
+	keyData[0] = keyData[0].map(function(d){return {role:"buyer", shape:d}});
+	keyData[1] = keyData[1].map(function(d){return {role:"seller", shape:d}})
+	console.log("KEYDATA", keyData);
+	var keyLines = this.key.selectAll("g").data(keyData).enter().append("g").attr({
+			class: function(d,i,a){
+				return "dots "+["buyer","seller"][i]
+			},
+			transform: function(d,i){
+			//	return "translate("+(i*(polySpace*7))+",0)"
+				return "translate(0,"+(i*lineHeight)+")"
+			}
+		});
+	keyLines.selectAll("polygon").data(function(d){return d}).enter().append("polygon").attr({
+		"points":function(d,i){
+			var pts = polys2[d.role][d.shape]
+			//console.log(pts);
+			 return pts },
+		"transform": function(d,i){return "translate("+(i*polySpace)+",0)"},
+		class:  function(d,i){return "dot "+d.role}
+	})
+	
+	keyLines.append("text").text(function(d,i){return "= "+["Buyers","Sellers"][i]}).attr({
+		"class":"name key", x: polySpace*4, y: polyDiameter/2
+	})
 		
 }
 

@@ -120,6 +120,14 @@ playerStatusChart.prototype.drawPlayers = function(_players){
 			width: "50px", height: "50px", x:"-25px", y:"-25px",
 			transform: function(d){return "translate(" + d.point.x + "," + d.point.y + ")";}
 		})
+		
+	this.dots.selectAll("text").data(this.players).enter().append("text").attr({
+		transform: function(d,i){
+			var pt = self.position2point(i);
+			return "translate("+pt.x+","+(pt.y+40)+")"},
+		
+		"text-anchor" : "middle", "class": "name"
+	}).text(function(d){return d.name})
 }
 
 playerStatusChart.prototype.drawArcs = function(){
