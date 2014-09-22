@@ -97,7 +97,7 @@ function WAMP(clientType) {
 							loadScreen("shared_1.html", function() {
 								$("#trans").empty();
 								trans = new transactionChart("#trans", 875,645);
-								$("#eqprice").html(trans.eq_price);
+								
 								
 								$("#status").empty();
 								pChart = new playerStatusChart("#status", 830,390);
@@ -122,6 +122,7 @@ function WAMP(clientType) {
 								$("#dist").empty();
 								dist = new distChart("#dist", 875,840);
 								dist.draw(roundData.transactions.distribution);
+								$("#eqprice").html(dist.eq_price);
 							});
 							break;
 							
