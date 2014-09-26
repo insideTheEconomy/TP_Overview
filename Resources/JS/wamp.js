@@ -127,6 +127,7 @@ function WAMP(clientType) {
 							break;
 							
 						case "World News":
+							headline = kwargs.data; //this is a "global" var
 							loadScreen("shared_news.html", function() {
 								
 							});

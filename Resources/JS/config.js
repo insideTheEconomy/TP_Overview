@@ -27,6 +27,8 @@ var trans;
 var pChart;
 var dist;
 var connection;
+
+var headline;
 // --------------------------- //
 
 try{
