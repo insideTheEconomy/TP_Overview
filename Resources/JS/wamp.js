@@ -98,10 +98,9 @@ function WAMP(clientType) {
 								$("#trans").empty();
 								trans = new transactionChart("#trans", 875,645);
 								
-								
 								$("#status").empty();
-								pChart = new playerStatusChart("#status", 830,390);
-								pChart.drawPlayers(roundData.players);
+								pChart = new playerStatusChart("#status", 830,380);
+								pChart.drawPlayers(curPlayers);
 								//setInterval(push,1000);
 							});
 							break;
@@ -110,7 +109,7 @@ function WAMP(clientType) {
 							phase = 2;
 							loadScreen("shared_2.html", function() {
 								$("#eorTrans").empty();
-								pChart = new playerChart("#eorTrans", 875,705);
+								pChart = new playerChart("#eorTrans", 875,685);
 								pChart.draw(roundData.players);
 								pChart.drawWinner("#winner");
 							});
@@ -120,7 +119,7 @@ function WAMP(clientType) {
 							phase = 3;
 							loadScreen("shared_0.html", function() {
 								$("#dist").empty();
-								dist = new distChart("#dist", 875,840);
+								dist = new distChart("#dist", 875,820);
 								dist.draw(roundData.transactions.distribution);
 								$("#eqprice").html(dist.eq_price);
 							});
