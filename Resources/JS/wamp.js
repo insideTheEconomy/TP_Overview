@@ -110,7 +110,7 @@ function WAMP(clientType) {
 							phase = 2;
 							loadScreen("shared_2.html", function() {
 								$("#eorTrans").empty();
-								pChart = new playerChart("#eorTrans", 875,685);
+								pChart = new playerChart("#eorTrans", 875,705);
 								pChart.draw(roundData.players);
 								pChart.drawWinner("#winner");
 							});

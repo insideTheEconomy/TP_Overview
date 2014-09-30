@@ -5,7 +5,7 @@ var playerChart = function(sel, w, h){
 	this.dimen = {
 		padding: {
 			top: 100,
-			bottom:100,
+			bottom:150,
 			right: 100,
 			left: 125
 		},
