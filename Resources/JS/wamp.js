@@ -55,6 +55,7 @@ function WAMP(clientType) {
 			
 			session.call("pit.rpc.getPhase", [], {}).then(function(r){
 				console.log("SharedScreen Get Phase: ", r);
+				self.callbacks.onPhase([],r)
 			});
 		};
 
@@ -83,7 +84,7 @@ function WAMP(clientType) {
 			},
 			onPhase: function(args, kwargs, details) {
 				console.log("onPhase: ", kwargs);
-				if (kwargs.action == "enter") {
+				if (kwargs.action == "enter" || kwargs.action == "active" ) {
 					switch(kwargs.name){
 					
 						case "Setup":
