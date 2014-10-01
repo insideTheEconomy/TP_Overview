@@ -101,7 +101,7 @@ function WAMP(clientType) {
 								
 								$("#status").empty();
 								pChart = new playerStatusChart("#status", 830,380);
-								pChart.drawPlayers(curPlayers);
+								//pChart.drawPlayers(curPlayers);
 								//setInterval(push,1000);
 							});
 							break;
@@ -173,5 +173,6 @@ var curPlayers;
 
 function storePlayers(args, kwargs, details) {
 	curPlayers = kwargs;
+	pChart.drawPlayers(curPlayers);
 }
 
