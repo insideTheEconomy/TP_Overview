@@ -13,7 +13,7 @@ module.exports = function(grunt) {
 	    },
 
 
-	    src: ['./**/*', "!./CSS/**.less", "!./**/*-ck.*","!./node_modules/gru*/**", "!./webkitbuilds/**/*"]
+	    src: ['./**/*', '!./**/*.zip','!./cache/**/*',"!./CSS/**.less", "!./**/*-ck.*","!./node_modules/gru*/**", "!./webkitbuilds/**/*"]
 
 	},
 	});
